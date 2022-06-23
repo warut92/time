@@ -1,0 +1,8 @@
+@import url('https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@6/fonts/IBMPlexSansThaiLooped/IBMPlexSansThaiLooped.css');
+body {
+  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+  font-size: 7em;
+  background: #f06d06;
+  color: white;
+  text-align: center;
+}
