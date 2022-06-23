@@ -6,7 +6,7 @@ function currentTime() {
   let ss = date.getSeconds();
   //total hours
   let hm = (hh * 60) + mm;
-  console.log(hm);
+  // console.log(hm);
   // for test
   // let hm = 820;
 
@@ -37,7 +37,7 @@ function currentTime() {
    } else if (hm == 720) {
      txt = "คาบ 5"
 
-   }else if (hm == 770) {
+   } else if (hm == 770) {
      txt = "คาบ 6"
 
    } else if (hm == 820) {
@@ -49,12 +49,16 @@ function currentTime() {
    } else {
      txt = "พักบ้างนะครับ"
    }
-
+   // countdown
+   // let cd = (hm - 470) % 50;
+   let cd = (hm - 470) % 50;
+   console.log(cd);
 
   document.getElementById("clock").innerText = time;
   let t = setTimeout(function(){ currentTime() }, 1000);
 
   document.getElementById("msg").innerText = txt;
+  document.getElementById("cd").innerText = 50 - cd + " นาที";
 
 }
 
