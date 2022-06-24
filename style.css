@@ -2,14 +2,13 @@
 body {
   font-family: 'IBM Plex Sans Thai Looped', sans-serif;
   font-size: 15em;
-  background: #f06d06;
+  background: green;
   color: white;
   text-align: center;
 }
 .msg, .cd {
   font-family: 'IBM Plex Sans Thai Looped', sans-serif;
   font-size: 0.2em;
-  background: #f06d06;
   color: white;
   text-align: center;
 }

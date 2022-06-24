@@ -19,12 +19,18 @@ function currentTime() {
 
    //period
    let txt = Math.floor((hm - 470) / 50);
+   // let txt = 7; 
+   if (txt < 1) {
+     txt = "อรุณสวัสดิ์";
+   } else if (txt > 8) {
+     txt = "พักบ้างนะ";
+   } else {
+     txt = "คาบ " + txt;
+   }
 
    // countdown
-   // let cd = (hm - 470) % 50;
    let cd = 50 - ((hm - 470) % 50);
-   console.log(cd);
-
+   cd = cd + " นาที";
 
    // if (cd === 12) {
    //   playBeep();
@@ -37,8 +43,8 @@ function currentTime() {
    // }
 
   document.getElementById("clock").innerText = time;
-  document.getElementById("msg").innerText = "คาบ " + txt;
-  document.getElementById("cd").innerText = cd + " นาที";
+  document.getElementById("msg").innerText =  txt;
+  document.getElementById("cd").innerText = cd;
 
   let t = setTimeout(function(){ currentTime() }, 1000);
 }
