@@ -17,49 +17,30 @@ function currentTime() {
    //
    let time = hh + ":" + mm + ":" + ss;
 
-   //audio
-   let sound = new Audio()
-   //if else
-   let txt = "";
+   //period
+   let txt = Math.floor((hm - 470) / 50);
 
-   if (hm == 520) {
-     txt = "คาบ 1"
-
-   } else if (hm == 570) {
-     txt = "คาบ 2"
-
-   } else if (hm == 620) {
-     txt = "คาบ 3"
-
-   } else if (hm == 670) {
-     txt = "คาบ 4 \nทานข้าวนะครับ"
-
-   } else if (hm == 720) {
-     txt = "คาบ 5"
-
-   } else if (hm == 770) {
-     txt = "คาบ 6"
-
-   } else if (hm == 820) {
-     txt = "คาบ 7"
-
-   } else if (hm == 870) {
-     txt = "คาบ 8"
-
-   } else {
-     txt = "พักบ้างนะครับ"
-   }
    // countdown
    // let cd = (hm - 470) % 50;
-   let cd = (hm - 470) % 50;
+   let cd = 50 - ((hm - 470) % 50);
    console.log(cd);
 
+
+   // if (cd === 12) {
+   //   playBeep();
+   // }
+   //
+   // //audio
+   // function playBeep() {
+   //   let beep = new Audio('./beep.mp3');
+   //   beep.play();
+   // }
+
   document.getElementById("clock").innerText = time;
+  document.getElementById("msg").innerText = "คาบ " + txt;
+  document.getElementById("cd").innerText = cd + " นาที";
+
   let t = setTimeout(function(){ currentTime() }, 1000);
-
-  document.getElementById("msg").innerText = txt;
-  document.getElementById("cd").innerText = 50 - cd + " นาที";
-
 }
 
 currentTime();
