@@ -11,42 +11,46 @@ function currentTime() {
   // let hm = 820;
 
   // add 0 before digit less than 10
-   hh = (hh < 10) ? "0" + hh : hh;
-   mm = (mm < 10) ? "0" + mm : mm;
-   ss = (ss < 10) ? "0" + ss : ss;
-   //
-   let time = hh + ":" + mm + ":" + ss;
+  hh = (hh < 10) ? "0" + hh : hh;
+  mm = (mm < 10) ? "0" + mm : mm;
+  ss = (ss < 10) ? "0" + ss : ss;
+  //
+  let time = hh + ":" + mm + ":" + ss;
 
-   //period
-   let txt = Math.floor((hm - 470) / 50);
-   // let txt = 7; 
-   if (txt < 1) {
-     txt = "อรุณสวัสดิ์";
-   } else if (txt > 8) {
-     txt = "พักบ้างนะ";
-   } else {
-     txt = "คาบ " + txt;
-   }
+  const d = new Date();
+  let day = d.getDay();
+  // day = 1
+  if (day === 0 || day === 6) {
+    document.getElementById("msg").innerText = "พักผ่อนบ้างนะครับ";
+  } else {
+    //period
+    let txt = Math.floor((hm - 470) / 50);
+    // let txt = 1;
+    if (txt < 1) {
+      txt = "อรุณสวัสดิ์";
+    } else if (txt > 8) {
+      // console.log(txt);
+      txt = "พักผ่อนบ้างนะครับ";
+    } else {
+      txt = "คาบ " + txt;
+    }
+    document.getElementById("msg").innerText = txt;
 
-   // countdown
-   let cd = 50 - ((hm - 470) % 50);
-   cd = cd + " นาที";
-
-   // if (cd === 12) {
-   //   playBeep();
-   // }
-   //
-   // //audio
-   // function playBeep() {
-   //   let beep = new Audio('./beep.mp3');
-   //   beep.play();
-   // }
+    // countdown
+    let cd = 50 - ((hm - 470) % 50);
+    cd = cd + " นาที";
+    if (txt == "พักผ่อนบ้างนะครับ" || txt == "อรุณสวัสดิ์") {
+      document.getElementById("cd").innerText = "";
+    } else {
+      document.getElementById("cd").innerText = cd;
+    }
+  }
 
   document.getElementById("clock").innerText = time;
-  document.getElementById("msg").innerText =  txt;
-  document.getElementById("cd").innerText = cd;
 
-  let t = setTimeout(function(){ currentTime() }, 1000);
+  let t = setTimeout(function() {
+    currentTime()
+  }, 1000);
 }
 
 currentTime();
