@@ -44,6 +44,10 @@ function currentTime() {
     } else {
       document.getElementById("cd").innerText = cd;
     }
+
+    if (hh >= 22) {
+      document.getElementById("msg").innerText = "ราตรีสวัสดิ์";
+    }
   }
 
   document.getElementById("clock").innerText = time;
