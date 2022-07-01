@@ -21,7 +21,7 @@ function currentTime() {
   let day = d.getDay();
   // day = 1
   if (day === 0 || day === 6) {
-    document.getElementById("msg").innerText = "พักผ่อนบ้างนะครับ";
+    document.getElementById("msg").innerText = "หมดเวลางาน";
   } else {
     //period
     let txt = Math.floor((hm - 470) / 50);
@@ -30,7 +30,7 @@ function currentTime() {
       txt = "อรุณสวัสดิ์";
     } else if (txt > 8) {
       // console.log(txt);
-      txt = "พักผ่อนบ้างนะครับ";
+      txt = "หมดเวลางาน";
     } else {
       txt = "คาบ " + txt;
     }
@@ -38,8 +38,8 @@ function currentTime() {
 
     // countdown
     let cd = 50 - ((hm - 470) % 50);
-    cd = cd + " นาที";
-    if (txt == "พักผ่อนบ้างนะครับ" || txt == "อรุณสวัสดิ์") {
+    cd = "เหลือเวลา " + cd + " นาที";
+    if (txt == "หมดเวลางาน" || txt == "อรุณสวัสดิ์") {
       document.getElementById("cd").innerText = "";
     } else {
       document.getElementById("cd").innerText = cd;

@@ -6,9 +6,24 @@ body {
   color: white;
   text-align: center;
 }
-.msg, .cd {
+
+.clock {
   font-family: 'IBM Plex Sans Thai Looped', sans-serif;
-  font-size: 0.2em;
+  font-size: 40px;
+  color: white;
+  text-align: center;
+}
+
+.msg {
+  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+  font-size: 240px;
+  color: white;
+  text-align: center;
+}
+
+.cd {
+  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+  font-size: 150px;
   color: white;
   text-align: center;
 }
