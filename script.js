@@ -16,17 +16,18 @@ function currentTime() {
   ss = (ss < 10) ? "0" + ss : ss;
   //
   let time = hh + ":" + mm + ":" + ss;
+  document.getElementById("clock").innerText = time;
 
   const d = new Date();
   let day = d.getDay();
-  // day = 1
-  if (day === 0 || day === 6) {
-    document.getElementById("msg").innerText = "หมดเวลางาน";
+  if (day == 0 || day == 6) {
+    document.getElementById("msg").innerText = "วันนี้วันหยุด";
   } else {
     //period
     let txt = Math.floor((hm - 470) / 50);
-    // let txt = 1;
-    if (txt < 1) {
+    if (d == 0 || d == 6) {
+      txt = "วันนี้วันหยุด"
+    } else if (txt < 1) {
       txt = "อรุณสวัสดิ์";
     } else if (txt > 8) {
       // console.log(txt);
@@ -50,7 +51,10 @@ function currentTime() {
     }
   }
 
-  document.getElementById("clock").innerText = time;
+  //background color for a getDay
+  const dayColor = ["Crimson","Yellow","Pink","Green","DarkOrange","DeepSkyBlue","BlueViolet"];
+  let color  = dayColor[day];
+  document.body.style.backgroundColor = color;
 
   let t = setTimeout(function() {
     currentTime()
