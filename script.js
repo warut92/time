@@ -52,7 +52,7 @@ function currentTime() {
   }
 
   //background color for a getDay
-  const dayColor = ["Crimson","LightGoldenRodYellow","Pink","Green","DarkOrange","DeepSkyBlue","BlueViolet"];
+  const dayColor = ["Crimson","Gold","Pink","Green","DarkOrange","DeepSkyBlue","BlueViolet"];
   let color  = dayColor[day];
   document.body.style.backgroundColor = color;
 
