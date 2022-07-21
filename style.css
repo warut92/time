@@ -14,16 +14,30 @@ body {
   text-align: center;
 }
 
-.msg {
+.periodText {
   font-family: 'IBM Plex Sans Thai Looped', sans-serif;
   font-size: 240px;
   color: white;
   text-align: center;
 }
 
-.cd {
+.coutDownClock {
   font-family: 'IBM Plex Sans Thai Looped', sans-serif;
   font-size: 150px;
   color: white;
+  text-align: center;
+}
+
+.subjectName {
+  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+  font-size: 60px;
+  color: white;
+  text-align: center;
+}
+
+.nextSubjectName {
+  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+  font-size: 40px;
+  color: gray;
   text-align: center;
 }
