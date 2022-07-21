@@ -1,3 +1,5 @@
+//
+
 function currentTime() {
   //get hours minutes seconds
   let date = new Date();
@@ -63,24 +65,26 @@ function currentTime() {
 
     // if th period less then 7 show the current subject on the current period
     if (day === 1) {
-      var subjects = ["", "", "", "พักเที่ยง", "ขลุ่ย 1 {2/4}", "", "ทัศนศิลป์ 1 {1/3}"]
+      var subjects = ["-", "-", "-", "พักเที่ยง", "ขลุ่ย 1 {2/4}", "-", "ทัศนศิลป์ 1 {1/3}"]
     } else if (day === 2) {
-      var subjects = ["", "ขลุ่ย 1 {2/2}", "ขลุ่ย 1 {2/3}", "พักเที่ยง", "","", "ทัศนศิลป์ 3 {2/8}"]
+      var subjects = ["-", "ขลุ่ย 1 {2/2}", "ขลุ่ย 1 {2/3}", "พักเที่ยง", "-","-", "ทัศนศิลป์ 3 {2/8}"]
     } else if (day === 3) {
-      var subjects = ["", "ทัศนศิลป์ 1 {1/2}", "ทัศนศิลป์ 1 {1/1}", "พักเที่ยง", "ขลุ่ย 1 2/5", "IS1", "IS1"]
+      var subjects = ["-", "ทัศนศิลป์ 1 {1/2}", "ทัศนศิลป์ 1 {1/1}", "พักเที่ยง", "ขลุ่ย 1 2/5", "IS1", "IS1"]
     } else if (day === 4) {
-      var subjects = ["", "ทัศนศิลป์ 1 {1/5}", "", "พักเที่ยง", "", "ทัศนศิลป์ 1 {1/4}", "ทัศนศิลป์ 3 {2/10}"]
+      var subjects = ["-", "ทัศนศิลป์ 1 {1/5}", "-", "พักเที่ยง", "-", "ทัศนศิลป์ 1 {1/4}", "ทัศนศิลป์ 3 {2/10}","ชุมนุม"]
     } else if (day === 5) {
-      var subjects = ["ทัศนศิลป์ 1 {1/7}", "ทัศนศิลป์ 1 {1/9}", "", "พักเที่ยง", "ทัศนศิลป์ 3 {2/9}", "", "ทัศนศิลป์ 1 {1/6}"]
+      var subjects = ["ทัศนศิลป์ 1 {1/7}", "ทัศนศิลป์ 1 {1/9}", "-", "พักเที่ยง", "ทัศนศิลป์ 3 {2/9}", "-", "ทัศนศิลป์ 1 {1/6}"]
     } else {
       document.getElementById("subjectName").innerText = "";
     }
     document.getElementById("subjectName").innerText = subjects[period - 1];
     document.getElementById("nextSubjectName").innerText = "คาบต่อไป " + subjects[period];
-    
+
     // if the period more than 7 show nothing
     if (period - 1 > 7) {
       document.getElementById("subjectName").innerText = "";
+      document.getElementById("nextSubjectName").innerText = "";
+
     }
 
 let t = setTimeout(function() {

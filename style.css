@@ -1,18 +1,5 @@
 @import url('https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@6/fonts/IBMPlexSansThaiLooped/IBMPlexSansThaiLooped.css');
-body {
-  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
-  font-size: 15em;
-  background: green;
-  color: white;
-  text-align: center;
-}
-
-.clock {
-  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
-  font-size: 40px;
-  color: white;
-  text-align: center;
-}
+@import url('https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@6/fonts/TlwgTypewriter/TlwgTypewriter.css');
 
 .periodText {
   font-family: 'IBM Plex Sans Thai Looped', sans-serif;
@@ -39,5 +26,12 @@ body {
   font-family: 'IBM Plex Sans Thai Looped', sans-serif;
   font-size: 40px;
   color: gray;
+  text-align: center;
+}
+
+.clock {
+  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+  font-size: 60px;
+  color: white;
   text-align: center;
 }
