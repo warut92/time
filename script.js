@@ -60,7 +60,7 @@ function currentTime() {
   document.body.style.backgroundColor = color;
 
   //show now subject and previous
-  let period = (Math.floor((hm - 470) / 50));
+  let period = Math.floor((hm - 470) / 50);
   //for test
   // let period = 2;
 
@@ -68,6 +68,7 @@ function currentTime() {
     console.log('DAY', day)
     if (day === 1) {
       var subjects = ["-", "-", "-", "พักเที่ยง", "ขลุ่ย 1 {2/4}", "-", "ทัศนศิลป์ 1 {1/3}"]
+      console.log(subjects[period])
     } else if (day === 2) {
       var subjects = ["-", "ขลุ่ย 1 {2/2}", "ขลุ่ย 1 {2/3}", "พักเที่ยง", "-","-", "ทัศนศิลป์ 3 {2/8}"]
     } else if (day === 3) {
@@ -80,7 +81,6 @@ function currentTime() {
       document.getElementById("subjectName").innerText = "";
     }
     document.getElementById("subjectName").innerText = subjects[period - 1];
-    console.log('SUBJECTS[PERIOD - 1]', subjects[period - 1])
     document.getElementById("nextSubjectName").innerText = "คาบต่อไป " + subjects[period];
 
     // if the period more than 7 show nothing
