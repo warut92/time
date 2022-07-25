@@ -32,9 +32,10 @@ function currentTime() {
     } else if (txt < 1) {
       txt = "อรุณสวัสดิ์";
     } else if (txt > 8) {
-      // console.log(txt);
-      txt = "หมดเวลางาน";
-    } else {
+      txt = "เวลาซ้อม";
+  } else if (txt > 10) {
+    txt = "หมดเวลางาน";
+  }  else {
       txt = "คาบ " + txt;
     }
     document.getElementById("periodText").innerText = txt;
@@ -64,6 +65,7 @@ function currentTime() {
   // let period = 2;
 
     // if th period less then 7 show the current subject on the current period
+    console.log('DAY', day)
     if (day === 1) {
       var subjects = ["-", "-", "-", "พักเที่ยง", "ขลุ่ย 1 {2/4}", "-", "ทัศนศิลป์ 1 {1/3}"]
     } else if (day === 2) {
@@ -78,10 +80,11 @@ function currentTime() {
       document.getElementById("subjectName").innerText = "";
     }
     document.getElementById("subjectName").innerText = subjects[period - 1];
+    console.log('SUBJECTS[PERIOD - 1]', subjects[period - 1])
     document.getElementById("nextSubjectName").innerText = "คาบต่อไป " + subjects[period];
 
     // if the period more than 7 show nothing
-    if (period - 1 > 7) {
+    if (period - 1 > 7 || period - 1 < 1) {
       document.getElementById("subjectName").innerText = "";
       document.getElementById("nextSubjectName").innerText = "";
 
