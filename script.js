@@ -1,4 +1,5 @@
-//
+//I'm still learning :)
+//main funtion
 function currentTime() {
   //get hours minutes seconds
   let date = new Date();
@@ -23,24 +24,26 @@ function currentTime() {
     document.getElementById("periodText").innerText = "วันนี้วันหยุด";
   } else {
     //period
-    let txt = Math.floor((hm - 470) / 50);
+    // 470 is the
+    let period = Math.floor((hm - 470) / 50);
+    console.log('PERIOD', period)
     if (d == 0 || d == 6) {
-      txt = "วันนี้วันหยุด"
-    } else if (txt < 1) {
-      txt = "อรุณสวัสดิ์";
-    } else if (txt > 8) {
-      txt = "เวลาซ้อม";
-    } else if (txt > 10) {
-      txt = "หมดเวลางาน";
+      period = "วันนี้วันหยุด"
+    } else if (period < 1) {
+      period = "อรุณสวัสดิ์";
+    } else if (period > 10) {
+      period = "หมดเวลางาน";
+    } else if (period > 8) {
+      period = "เวลาซ้อม";
     } else {
-      txt = "คาบ " + txt;
+      period = "คาบ " + period;
     }
-    document.getElementById("periodText").innerText = txt;
+    document.getElementById("periodText").innerText = period;
 
     // countdown
     var coutDownClock = 50 - ((hm - 470) % 50);
     coutDownClock = "เหลือเวลา " + coutDownClock + " นาที";
-    if (txt == "หมดเวลางาน" || txt == "อรุณสวัสดิ์") {
+    if (period == "หมดเวลางาน" || period == "อรุณสวัสดิ์") {
       document.getElementById("coutDownClock").innerText = "";
     } else {
       document.getElementById("coutDownClock").innerText = coutDownClock;
