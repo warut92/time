@@ -35,3 +35,26 @@
   color: white;
   text-align: center;
 }
+
+p {
+  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+  font-size: 30px;
+  color: white;
+  text-align: center;
+}
+
+ /* for calendar */
+.calendar {
+   font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+   font-size: 30px;
+   color: white;
+   align-items: : center;
+ }
+
+.today {
+	font-weight: 900;
+	color:red;
+}
+.not-current {
+	color: GrayText;
+}
