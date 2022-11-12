@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+
+      var monday = ["ขลุ่ย 2 (2/3)", "เตรียนสอน", "กลองยาว (4/6)", "พักเที่ยง", "เตรียนสอน", "ขลุ่ย 2 (2/4)", "ปฏิบัติดนตรีไทย (1/8)", "โฮมรูม (4/4)"]
+
+      var tuesday = ["ดนตรี 2 (2/10)", "เตรียนสอน", "เตรียนสอน", "พักเที่ยง", "ขลุ่ย 2 (2/5)", "ขลุ่ย 2 (2/2)", "ดนตรี 2 (2/7)", "โฮมรูม (4/4)"]
+
+      var wendesday = ["ดนตรี 2 (2/8)", "เตรียนสอน", "ดนตรี 2 (2/9)", "พักเที่ยง", "ดนตรี 2 (2/6)", "เตรียนสอน", "เตรียนสอน", "สูกเสือ (2/1)"]
+
+      var thurday = ["เตรียนสอน", "ดนตรี 2 (2/2)", "ดนตรี 2 (2/3)", "พักเที่ยง", "ดนตรี 2 (2/4)", "เตรียนสอน", "เตรียนสอน", "ชุมนุม"]
+
+      var friday = ["เตรียนสอน", "เตรียนสอน", "ปฏิบัติดนตรีไทย (1/8)", "พักเที่ยง", "เตรียนสอน", "ดนตรี 2 (2/5)", "ดนตรี 2 (2/1)", "อบรมคุณธรรม"]
+
+      var bodyString = '';
+      $.each(monday, function(index, monday) {
+        bodyString += ('<tr><td>' + monday + '</td><td>' + tuesday[index] + '</td><td>' + wendesday[index] + '</td><td>' + thurday[index] + '</td><td>' + friday[index] + '</td></tr>');
+      });
+      $('.subjects tbody').html(bodyString);
+
+    });
+  </script>
+  <script>
+    for (var i = 0; i <= 45; i++) {
+      console.log(i);
+    }
+  </script>
+  <style>
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <table class="table table-striped subjects">
+    <h2>
+      <center>ตารางสอน ครูวรุฒ 2/2565</center>
+    </h2>
+    <thead>
+      <th>วันจันทร์</th>
+      <th>วันอังคาร</th>
+      <th>วันพุธ</th>
+      <th>วันพฤหัส</th>
+      <th>วันศุกร์</th>
+    </thead>
+    <tbody></tbody>
+  </table>
+</body>
+
+</html>
