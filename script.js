@@ -14,7 +14,7 @@ function currentTime() {
   hh = (hh < 10) ? "0" + hh : hh;
   mm = (mm < 10) ? "0" + mm : mm;
   ss = (ss < 10) ? "0" + ss : ss;
-  //
+  //current time
   let time = hh + ":" + mm + ":" + ss;
   document.getElementById("clock").innerText = time;
 
@@ -26,7 +26,6 @@ function currentTime() {
     //period
     // 470 is the
     let period = Math.floor((hm - 470) / 50);
-    console.log('PERIOD', period)
     if (d == 0 || d == 6) {
       period = "วันนี้วันหยุด"
     } else if (period < 1) {
@@ -61,18 +60,17 @@ function currentTime() {
 
   //show now subject and previous
   let period = Math.floor((hm - 470) / 50);
-  console.log('PERIOD', period)
-  //for test
+  // console.log('PERIOD', period)
 
   // if th period less then 7 show the current subject on the current period
-  console.log('DAY', day)
+  // console.log('DAY', day)
   if (day === 1) {
-    var subjects = ["ขลุ่ย 2 (2/3)", "เตรียนสอน", "กลองยาว (4/6)", "พักเที่ยง", "ปฏิบัติดนตรีไทย (1/8)", "ขลุ่ย 2 (2/4)", "เตรียนสอน", "โฮมรูม (4/4)"]
-    console.log(subjects[period])
+    var subjects = ["ขลุ่ย 2 (2/3)", "เตรียนสอน", "กลองยาว (4/6)", "พักเที่ยง", "เตรียนสอน", "ขลุ่ย 2 (2/4)", "ปฏิบัติดนตรีไทย (1/8)", "โฮมรูม (4/4)"]
+    // console.log(subjects[period])
   } else if (day === 2) {
     var subjects = ["ดนตรี 2 (2/10)", "เตรียนสอน", "เตรียนสอน", "พักเที่ยง", "ขลุ่ย 2 (2/5)", "ขลุ่ย 2 (2/2)", "ดนตรี 2 (2/7)", "โฮมรูม (4/4)"]
   } else if (day === 3) {
-    var subjects = ["ดนตรี 2 (2/8)", "เตรียนสอน", "ดนตรี 2 (2/9)", "พักเที่ยง", "ดนตรี 2 (2/6)", "เตรียนสอน", "เตรียนสอน", "สูกเสือ (2/1)"]
+    var subjects = ["ดนตรี 2 (2/8)", "เตรียนสอน", "ดนตรี 2 (2/9)", "พักเที่ยง", "ดนตรี 2 (2/6)", "เตรียนสอน", "เตรียนสอน", "ลูกเสือ (2/1)"]
   } else if (day === 4) {
     var subjects = ["เตรียนสอน", "ดนตรี 2 (2/2)", "ดนตรี 2 (2/3)", "พักเที่ยง", "ดนตรี 2 (2/4)", "เตรียนสอน", "เตรียนสอน", "ชุมนุม"]
   } else if (day === 5) {
@@ -87,9 +85,7 @@ function currentTime() {
   if (period - 1 > 7 || period - 1 < 0) {
     document.getElementById("subjectName").innerText = "";
     document.getElementById("nextSubjectName").innerText = "";
-
   }
-
   let t = setTimeout(function() {
     currentTime()
   }, 1000);
@@ -127,11 +123,10 @@ var Cal = function(divId) {
 
 // Goes to next month
 Cal.prototype.nextMonth = function() {
-  if ( this.currMonth == 11 ) {
+  if (this.currMonth == 11) {
     this.currMonth = 0;
     this.currYear = this.currYear + 1;
-  }
-  else {
+  } else {
     this.currMonth = this.currMonth + 1;
   }
   this.showcurr();
@@ -139,11 +134,10 @@ Cal.prototype.nextMonth = function() {
 
 // Goes to previous month
 Cal.prototype.previousMonth = function() {
-  if ( this.currMonth == 0 ) {
+  if (this.currMonth == 0) {
     this.currMonth = 11;
     this.currYear = this.currYear - 1;
-  }
-  else {
+  } else {
     this.currMonth = this.currMonth - 1;
   }
   this.showcurr();
@@ -158,12 +152,15 @@ Cal.prototype.showcurr = function() {
 Cal.prototype.showMonth = function(y, m) {
 
   var d = new Date()
-  // First day of the week in the selected month
-  , firstDayOfMonth = new Date(y, m, 1).getDay()
-  // Last day of the selected month
-  , lastDateOfMonth =  new Date(y, m+1, 0).getDate()
-  // Last day of the previous month
-  , lastDayOfLastMonth = m == 0 ? new Date(y-1, 11, 0).getDate() : new Date(y, m, 0).getDate();
+    // First day of the week in the selected month
+    ,
+    firstDayOfMonth = new Date(y, m, 1).getDay()
+    // Last day of the selected month
+    ,
+    lastDateOfMonth = new Date(y, m + 1, 0).getDate()
+    // Last day of the previous month
+    ,
+    lastDayOfLastMonth = m == 0 ? new Date(y - 1, 11, 0).getDate() : new Date(y, m, 0).getDate();
 
 
   var html = '<table>';
@@ -176,27 +173,27 @@ Cal.prototype.showMonth = function(y, m) {
 
   // Write the header of the days of the week
   html += '<tr class="days">';
-  for(var i=0; i < this.DaysOfWeek.length;i++) {
+  for (var i = 0; i < this.DaysOfWeek.length; i++) {
     html += '<td>' + this.DaysOfWeek[i] + '</td>';
   }
   html += '</tr>';
 
   // Write the days
-  var i=1;
+  var i = 1;
   do {
 
     var dow = new Date(y, m, i).getDay();
 
     // If Sunday, start new row
-    if ( dow == 0 ) {
+    if (dow == 0) {
       html += '<tr>';
     }
     // If not Sunday but first day of the month
     // it will write the last days from the previous month
-    else if ( i == 1 ) {
+    else if (i == 1) {
       html += '<tr>';
-      var k = lastDayOfLastMonth - firstDayOfMonth+1;
-      for(var j=0; j < firstDayOfMonth; j++) {
+      var k = lastDayOfLastMonth - firstDayOfMonth + 1;
+      for (var j = 0; j < firstDayOfMonth; j++) {
         html += '<td class="not-current">' + k + '</td>';
         k++;
       }
@@ -212,21 +209,21 @@ Cal.prototype.showMonth = function(y, m) {
       html += '<td class="normal">' + i + '</td>';
     }
     // If Saturday, closes the row
-    if ( dow == 6 ) {
+    if (dow == 6) {
       html += '</tr>';
     }
     // If not Saturday, but last day of the selected month
     // it will write the next few days from the next month
-    else if ( i == lastDateOfMonth ) {
-      var k=1;
-      for(dow; dow < 6; dow++) {
+    else if (i == lastDateOfMonth) {
+      var k = 1;
+      for (dow; dow < 6; dow++) {
         html += '<td class="not-current">' + k + '</td>';
         k++;
       }
     }
 
     i++;
-  }while(i <= lastDateOfMonth);
+  } while (i <= lastDateOfMonth);
 
   // Closes table
   html += '</table>';

@@ -7,52 +7,87 @@
   <script>
     $(document).ready(function() {
 
-      var monday = ["ขลุ่ย 2 (2/3)", "เตรียนสอน", "กลองยาว (4/6)", "พักเที่ยง", "เตรียนสอน", "ขลุ่ย 2 (2/4)", "ปฏิบัติดนตรีไทย (1/8)", "โฮมรูม (4/4)"]
+      var monday = ["ขลุ่ย 2 (2/3)", "เตรียมสอน", "กลองยาว (4/6)", "พักเที่ยง", "เตรียมสอน", "ขลุ่ย 2 (2/4)", "ปฏิบัติดนตรีไทย (1/8)", "โฮมรูม (4/4)"]
 
-      var tuesday = ["ดนตรี 2 (2/10)", "เตรียนสอน", "เตรียนสอน", "พักเที่ยง", "ขลุ่ย 2 (2/5)", "ขลุ่ย 2 (2/2)", "ดนตรี 2 (2/7)", "โฮมรูม (4/4)"]
+      var tuesday = ["ดนตรี 2 (2/10)", "เตรียมสอน", "เตรียมสอน", "พักเที่ยง", "ขลุ่ย 2 (2/5)", "ขลุ่ย 2 (2/2)", "ดนตรี 2 (2/7)", "โฮมรูม (4/4)"]
 
-      var wendesday = ["ดนตรี 2 (2/8)", "เตรียนสอน", "ดนตรี 2 (2/9)", "พักเที่ยง", "ดนตรี 2 (2/6)", "เตรียนสอน", "เตรียนสอน", "สูกเสือ (2/1)"]
+      var wendesday = ["ดนตรี 2 (2/8)", "เตรียมสอน", "ดนตรี 2 (2/9)", "พักเที่ยง", "ดนตรี 2 (2/6)", "เตรียมสอน", "เตรียมสอน", "ลูกเสือ (2/1)"]
 
-      var thurday = ["เตรียนสอน", "ดนตรี 2 (2/2)", "ดนตรี 2 (2/3)", "พักเที่ยง", "ดนตรี 2 (2/4)", "เตรียนสอน", "เตรียนสอน", "ชุมนุม"]
+      var thurday = ["เตรียมสอน", "ดนตรี 2 (2/2)", "ดนตรี 2 (2/3)", "พักเที่ยง", "ดนตรี 2 (2/4)", "เตรียมสอน", "เตรียมสอน", "ชุมนุม"]
 
-      var friday = ["เตรียนสอน", "เตรียนสอน", "ปฏิบัติดนตรีไทย (1/8)", "พักเที่ยง", "เตรียนสอน", "ดนตรี 2 (2/5)", "ดนตรี 2 (2/1)", "อบรมคุณธรรม"]
+      var friday = ["เตรียมสอน", "เตรียมสอน", "ปฏิบัติดนตรีไทย (1/8)", "พักเที่ยง", "เตรียมสอน", "ดนตรี 2 (2/5)", "ดนตรี 2 (2/1)", "อบรมคุณธรรม"]
 
       var bodyString = '';
       $.each(monday, function(index, monday) {
-        bodyString += ('<tr><td>' + monday + '</td><td>' + tuesday[index] + '</td><td>' + wendesday[index] + '</td><td>' + thurday[index] + '</td><td>' + friday[index] + '</td></tr>');
+        bodyString += ('<tr><td>' + (index + 1) + '</td><td>' + monday + '</td><td>' + tuesday[index] + '</td><td>' + wendesday[index] + '</td><td>' + thurday[index] + '</td><td>' + friday[index] + '</td></tr>');
       });
       $('.subjects tbody').html(bodyString);
 
     });
-  </script>
-  <script>
-    for (var i = 0; i <= 45; i++) {
-      console.log(i);
+
+    var tdTag = document.getElementsByTagName('td')
+    console.log(tdTag);
+    for (let i = 0; i < tdTag.length; i++) {
+      var tdCellwithId = tdTag[i];
+      tdCellwithId.setAttribute("id", i + 1);
     }
+
+
   </script>
   <style>
+    body {
+     text-align: center;
+    }
     table,
     th,
     td {
       border: 1px solid black;
     }
+    11 {
+      background-color: black
+    }
   </style>
 </head>
 
 <body>
-  <table class="table table-striped subjects">
+  <table class="table table-striped subjects" style="border:1px solid black;margin-left:auto;margin-right:auto;">
     <h2>
-      <center>ตารางสอน ครูวรุฒ 2/2565</center>
+      <center>ตารางสอน ครูวรุฒ 2/2565
     </h2>
+      <div id="date"></div>
+      <div id ="clock" class="clock" onload="currentTime()"></div>
+      </center>
     <thead>
+      <th>คาบ</th>
       <th>วันจันทร์</th>
       <th>วันอังคาร</th>
       <th>วันพุธ</th>
       <th>วันพฤหัส</th>
       <th>วันศุกร์</th>
     </thead>
-    <tbody></tbody>
+    <tbody id="subjectNameInTable"></tbody>
   </table>
-</body>
+  <div id ="periodText" class="periodText"></div>
+  <div id="subjectName" class="subjectName"></div>
+  <div id ="coutDownClock" class="coutDownClock"></div>
+  <div id="nextSubjectName" class="nextSubjectName"></div>
+    <script  src="./script.js"></script>
+    <script type="text/javascript">
+    var mydate=new Date()
+    var year=mydate.getYear() + 543
+        if (year < 1000)
+            year += 1900
+            var day = mydate.getDay()
+            var month = mydate.getMonth()
+            var daym = mydate.getDate()
+                if (daym < 10)
+                    daym = "0" + daym
+            var montharray = new Array("มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","กรกฎาคม","มิถุนายน","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม")
 
+            const weekday = ["อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์"];
+            var day = weekday[mydate.getDay()];
+            document.getElementById("date").innerHTML = "วัน" + day + "ที่  " + daym + " " + montharray[month] + " พ.ศ. " + year;
+
+    </script>
+</body>
 </html>
