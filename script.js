@@ -1,30 +1,36 @@
 //I'm still learning :)
 //main funtion
 function currentTime() {
-  //get hours minutes seconds
+  //ตั้งตัวแปร ชั่วโมง นาที วินาที
   let date = new Date();
   let hh = date.getHours();
   let mm = date.getMinutes();
   let ss = date.getSeconds();
 
-  //total hours
+  //แปลงชั่วโมงเป็นนาที
   let hm = (hh * 60) + mm;
+  console.log(hm);
 
-  // add 0 before digit less than 10
+  //เติมเลข 0 ให้กับชั่วโมงที่มีค่าน้อยว่า 9
   hh = (hh < 10) ? "0" + hh : hh;
   mm = (mm < 10) ? "0" + mm : mm;
   ss = (ss < 10) ? "0" + ss : ss;
-  //current time
+
+  //เวลาปัจจุบัน
   let time = hh + ":" + mm + ":" + ss;
   document.getElementById("clock").innerText = time;
 
+  //ตั้งตัวแปร วัน
   const d = new Date();
   let day = d.getDay();
+  //ถ้าเป็นวันเสาร์ อาทิตย์ ให้แสดงข้อความ "วันนี้วันหยุด"
   if (day == 0 || day == 6) {
     document.getElementById("periodText").innerText = "วันนี้วันหยุด";
   } else {
-    //period
-    // 470 is the
+
+    //ตั้งตัวแปร period สำหรับคาบ คาบละ 50 นาที
+    //
+    // 470 คือ 470 นาที เริ่มนับตั้งแต่เที่ยงคืน = 7:50
     let period = Math.floor((hm - 470) / 50);
     if (d == 0 || d == 6) {
       period = "วันนี้วันหยุด"
@@ -39,7 +45,7 @@ function currentTime() {
     }
     document.getElementById("periodText").innerText = period;
 
-    // countdown
+    // ตัวนับถอยหลัง
     var coutDownClock = 50 - ((hm - 470) % 50);
     coutDownClock = "เหลือเวลา " + coutDownClock + " นาที";
     if (period == "หมดเวลางาน" || period == "อรุณสวัสดิ์") {
@@ -53,20 +59,17 @@ function currentTime() {
     }
   }
 
-  //background color for a getDay
-  const dayColor = ["Crimson", "Gold", "DeepPink", "Green", "DarkOrange", "DeepSkyBlue", "BlueViolet"];
-  let color = dayColor[day];
-  document.body.style.backgroundColor = color;
+  // เปลี่ยนสีตามวัน day มาจาก getDay
+  // const dayColor = ["Crimson", "Gold", "DeepPink", "Green", "DarkOrange", "DeepSkyBlue", "BlueViolet"];
+  // let color = dayColor[day];
+  // document.body.style.backgroundColor = color;
 
-  //show now subject and previous
+  // ตั้งตัวแปร period สำหรับคาบ คาบละ 50 นาที (ทำซ้ำอีก?)
   let period = Math.floor((hm - 470) / 50);
-  // console.log('PERIOD', period)
 
-  // if th period less then 7 show the current subject on the current period
-  // console.log('DAY', day)
+  // แสดงข้อความชือวิชาตามวันตามคาบ
   if (day === 1) {
     var subjects = ["ขลุ่ย 2 (2/3)", "เตรียมสอน", "กลองยาว (4/6)", "พักเที่ยง", "เตรียมสอน", "ขลุ่ย 2 (2/4)", "ปฏิบัติดนตรีไทย (1/8)", "โฮมรูม (4/4)"]
-    // console.log(subjects[period])
   } else if (day === 2) {
     var subjects = ["ดนตรี 2 (2/10)", "เตรียมสอน", "เตรียมสอน", "พักเที่ยง", "ขลุ่ย 2 (2/5)", "ขลุ่ย 2 (2/2)", "ดนตรี 2 (2/7)", "โฮมรูม (4/4)"]
   } else if (day === 3) {
@@ -79,20 +82,26 @@ function currentTime() {
     document.getElementById("subjectName").innerText = "";
   }
   document.getElementById("subjectName").innerText = subjects[period - 1];
+  // แสดงข้อความชื่อวิชาคาบต่อไป
   document.getElementById("nextSubjectName").innerText = "คาบต่อไป " + subjects[period];
 
-  // if the period more than 7 or less tha 0 show nothing
+  // ถ้า period มากว่า 7 หรือน้อยกว่า 0 แสดงความว่างเปล่า
   if (period - 1 > 7 || period - 1 < 0) {
     document.getElementById("subjectName").innerText = "";
     document.getElementById("nextSubjectName").innerText = "";
   }
+
+  //เรียกฟังก์ชัน currentTime() ทุก 1 วินาที (มีผลต่อการแสดง เวลาปัจจุบัน)
   let t = setTimeout(function() {
     currentTime()
   }, 1000);
 }
 
+//เรียกฟังก์ชัน currentTime() ตอนเปิดเว็บ
 currentTime();
 
+//Calendar
+//https://codepen.io/xmark/pen/WQaXdv
 var Cal = function(divId) {
 
   //Store div id

@@ -1,51 +1,49 @@
-@import url('https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@6/fonts/IBMPlexSansThaiLooped/IBMPlexSansThaiLooped.css');
-@import url('https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@6/fonts/TlwgTypewriter/TlwgTypewriter.css');
-
-.periodText {
-  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
-  font-size: 240px;
+@import 'https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@7/fonts/TlwgTypist/TlwgTypist.css';
+body {
+  font-family: 'Tlwg Typist', monospace;
   color: white;
+  background-color: midnightblue;
+}
+/* วันที่ */
+p {
+  font-size: 30px;
   text-align: center;
 }
 
-.coutDownClock {
-  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
-  font-size: 150px;
-  color: white;
-  text-align: center;
-}
-
-.subjectName {
-  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+/* นาฬิกา */
+.clock {
   font-size: 60px;
-  color: white;
   text-align: center;
 }
 
+/* ชื่อคาบ */
+.periodText {
+  font-size: 200px;
+  text-align: center;
+}
+
+/* ชื่อวิชา */
+.subjectName {
+  font-size: 60px;
+  text-align: center;
+}
+
+/* เวลาที่เหลือ */
+.coutDownClock {
+  font-size: 100px;
+  text-align: center;
+}
+
+/* ชื่อคาบต่อไป */
 .nextSubjectName {
-  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
   font-size: 40px;
   color: gray;
   text-align: center;
 }
 
-.clock {
-  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
-  font-size: 60px;
-  color: white;
-  text-align: center;
-}
-
-p {
-  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
-  font-size: 30px;
-  color: white;
-  text-align: center;
-}
 
  /* for calendar */
 .calendar {
-   font-family: 'IBM Plex Sans Thai Looped', sans-serif;
    font-size: 30px;
    color: white;
    align-items: : center;

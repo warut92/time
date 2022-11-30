@@ -25,32 +25,22 @@
 
     });
 
-    var tdTag = document.getElementsByTagName('td')
-    console.log(tdTag);
-    for (let i = 0; i < tdTag.length; i++) {
-      var tdCellwithId = tdTag[i];
-      tdCellwithId.setAttribute("id", i + 1);
-    }
-
-
   </script>
   <style>
-    body {
-     text-align: center;
-    }
     table,
     th,
     td {
       border: 1px solid black;
     }
-    11 {
-      background-color: black
-    }
+    #orange
+  {
+    background-color: orange;
+  }
   </style>
 </head>
 
 <body>
-  <table class="table table-striped subjects" style="border:1px solid black;margin-left:auto;margin-right:auto;">
+  <table class="table table-striped subjects">
     <h2>
       <center>ตารางสอน ครูวรุฒ 2/2565
     </h2>
@@ -88,6 +78,13 @@
             var day = weekday[mydate.getDay()];
             document.getElementById("date").innerHTML = "วัน" + day + "ที่  " + daym + " " + montharray[month] + " พ.ศ. " + year;
 
+            $(document).ready(function() {
+            $("td").click(function(){
+              alert($(this).index());
+            }
+      });
+
     </script>
 </body>
+
 </html>
