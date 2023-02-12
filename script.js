@@ -24,13 +24,18 @@ function currentTime() {
   const d = new Date();
   let day = d.getDay();
   //ถ้าเป็นวันเสาร์ อาทิตย์ ให้แสดงข้อความ "วันนี้วันหยุด"
+  // day = 0 //for test
   if (day == 0 || day == 6) {
     document.getElementById("periodText").innerText = "วันนี้วันหยุด";
+    //เรียกฟังก์ชัน currentTime() ทุก 1 วินาที (มีผลต่อการแสดง เวลาปัจจุบัน)
+    let t = setTimeout(function() {
+      currentTime()
+    }, 1000);
   } else {
 
     //ตั้งตัวแปร period สำหรับคาบ คาบละ 50 นาที
     //
-    // 470 คือ 470 นาที เริ่มนับตั้งแต่เที่ยงคืน = 7:50
+    // 470 คือ 470 นาที เริ่มนับตั้งแต่เที่ยงคืนถึง 7:50
     let period = Math.floor((hm - 470) / 50);
     if (d == 0 || d == 6) {
       period = "วันนี้วันหยุด"
@@ -92,7 +97,7 @@ function currentTime() {
   }
 
   //เรียกฟังก์ชัน currentTime() ทุก 1 วินาที (มีผลต่อการแสดง เวลาปัจจุบัน)
-  let t = setTimeout(function() {
+  setTimeout(() => {
     currentTime()
   }, 1000);
 }
