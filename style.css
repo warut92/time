@@ -41,18 +41,14 @@ p {
   text-align: center;
 }
 
-
- /* for calendar */
-.calendar {
-   font-size: 30px;
-   color: white;
-   align-items: : center;
- }
-
-.today {
-	font-weight: 900;
-	color:red;
+/* Progress bar */
+#myProgress {
+  width: 100%;
+  background-color: grey;
 }
-.not-current {
-	color: GrayText;
+
+#myBar {
+  width: 1%;
+  height: 15px;
+  background-color: white;
 }
