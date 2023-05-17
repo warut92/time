@@ -1,6 +1,10 @@
-@import 'https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@7/fonts/TlwgTypist/TlwgTypist.css';
+/* @import 'https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@7/fonts/TlwgTypist/TlwgTypist.css'; */
+
+@import 'https://fonts.googleapis.com/css2?family=Mitr:wght@300&display=swap';
+
 body {
-  font-family: 'Tlwg Typist', monospace;
+  /* font-family: 'Tlwg Typist', monospace; */
+  font-family: 'Mitr', sans-serif;
   color: white;
   background-color: midnightblue;
 }
