@@ -1,4 +1,3 @@
-//I'm still learning :)
 //main funtion
 function currentTime() {
   //ตั้งตัวแปร ชั่วโมง นาที วินาที
@@ -9,7 +8,7 @@ function currentTime() {
 
   //แปลงชั่วโมงเป็นนาที
   let hm = (hh * 60) + mm;
-  console.log(hm);
+  // console.log(hm);
 
   //เติมเลข 0 ให้กับชั่วโมงที่มีค่าน้อยว่า 9
   hh = (hh < 10) ? "0" + hh : hh;
@@ -52,7 +51,7 @@ function currentTime() {
 
     // ตัวนับถอยหลัง
     var coutDownClock = 50 - ((hm - 470) % 50);
-    console.log('COUTDOWNCLOCK', coutDownClock)
+    // console.log('COUTDOWNCLOCK', coutDownClock)
     coutDownClock = "เหลือเวลา " + coutDownClock + " นาที";
     if (period == "หมดเวลางาน" || period == "อรุณสวัสดิ์") {
       document.getElementById("coutDownClock").innerText = "";
@@ -64,11 +63,11 @@ function currentTime() {
       document.getElementById("periodText").innerText = "ราตรีสวัสดิ์";
     }
   }
-  //Progressbar
+  //progress bar
       var elem = document.getElementById("myBar");
       var width = 50 - ((hm - 470) % 50);
       let widthPercent = (50 - width)*100/50;
-      console.log('WIDTH', (50 - width)*100/50);
+      // console.log('WIDTH', (50 - width)*100/50);
       elem.style.width = widthPercent + "%";
 
   // เปลี่ยนสีตามวัน day มาจาก getDay
