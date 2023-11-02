@@ -1,4 +1,5 @@
 //main funtion
+let all_subjects = ""
 function currentTime() {
   //ตั้งตัวแปร ชั่วโมง นาที วินาที
   let date = new Date();
@@ -78,7 +79,7 @@ function currentTime() {
   // ตั้งตัวแปร period สำหรับคาบ คาบละ 50 นาที (ทำซ้ำอีก?)
   let period = Math.floor((hm - 470) / 50);
 
-let all_subjects = `เตรียมสอน, อังกะลุง 1/5, อังกะลุง 1/6, พักกลางวัน, เตรียมสอน, ดนตรีไทย 1/4, ดนตรีไทย 1/7, โฮมรูม
+all_subjects = `เตรียมสอน, อังกะลุง 1/5, อังกะลุง 1/6, พักกลางวัน, เตรียมสอน, ดนตรีไทย 1/4, ดนตรีไทย 1/7, โฮมรูม
 อังกะลุง 1/5,เตรียมสอน,  ดนตรีไทย 1/3,  พักกลางวัน, เตรียมสอน, ขลุ่ย 2/5, เตรียมสอน, กิจกรรม 5/4
 เตรียมสอน, เตรียมสอน, ขลุ่ย 2/2, พักกลางวัน, ดนตรีไทย 1/1, ดนตรีไทย 1/2, ขลุ่ย 2/3, ลูกเสือ
 ขลุ่ย 2/1, ดนตรีไทย 1/6, เตรียมสอน, พักกลางวัน, ดนตรีไทย 1/5, ขลุ่ย 2/4, เตรียมสอน, ชุมนุม
@@ -118,3 +119,25 @@ let all_subjects_arr = all_subjects.split("\n")
 
 //เรียกฟังก์ชัน currentTime() ตอนเปิดเว็บ
 currentTime();
+
+console.log(all_subjects);
+
+let newLineArr = all_subjects.split(/\n/g);
+//find length
+let newLineArrLen = newLineArr.length;
+//make variable
+let HTMLTableOutput = "";
+
+// looping for create new line on display
+  for (let i = 0; i < newLineArrLen; i++) {
+    HTMLTableOutput += "<tr><td>" + newLineArr[i] + "</td></tr>" + "\n";
+  }
+  //replace comma with table tag form
+  HTMLTableOutput = HTMLTableOutput.replace(/,/g, "</td><td>");
+
+  if (HTMLTableOutput !== "<tr><td></td></tr>\n") {
+    document.getElementById("output_table").innerHTML =
+      "<table style=&#34width:100%&#34>\n" + HTMLTableOutput + "</table>";
+  } else {
+    alert("empty data!");
+  }
