@@ -72,9 +72,9 @@ function currentTime() {
       elem.style.width = widthPercent + "%";
 
   // เปลี่ยนสีตามวัน day มาจาก getDay
-  // const dayColor = ["Crimson", "Gold", "DeepPink", "Green", "DarkOrange", "DeepSkyBlue", "BlueViolet"];
-  // let color = dayColor[day];
-  document.body.style.backgroundColor = "green";
+  const dayColor = ["Crimson", "Gold", "DeepPink", "Green", "DarkOrange", "DeepSkyBlue", "BlueViolet"];
+  let color = dayColor[day];
+  document.body.style.backgroundColor = color;
 
   // ตั้งตัวแปร period สำหรับคาบ คาบละ 50 นาที (ทำซ้ำอีก?)
   let period = Math.floor((hm - 470) / 50);
