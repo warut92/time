@@ -86,7 +86,7 @@ all_subjects = `เตรียมสอน, อังกะลุง 1/5, อ�
 เตรียมสอน, เตรียมสอน, อังกะลุง 1/6, พักกลางวัน, เตรียมสอน, ดนตรีไทย 1/8, เตรียมสอน, คุณธรรม`
 
 let all_subjects_arr = all_subjects.split("\n")
-
+  var subjects = ""
   // แสดงข้อความชือวิชาตามวันตามคาบ
   if (day === 1) {
     var subjects = all_subjects_arr[day-1].split(",")
@@ -132,6 +132,7 @@ let HTMLTableOutput = "";
   for (let i = 0; i < newLineArrLen; i++) {
     HTMLTableOutput += "<tr><td>" + newLineArr[i] + "</td></tr>" + "\n";
   }
+  // console.log('HTMLTABLEOUTPUT', HTMLTableOutput)
   //replace comma with table tag form
   HTMLTableOutput = HTMLTableOutput.replace(/,/g, "</td><td>");
 
