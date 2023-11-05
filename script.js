@@ -1,5 +1,10 @@
-//main funtion
-let all_subjects = ""
+//พิมพ์ข้อมูลวิชา
+let all_subjects = `เตรียมสอน, อังกะลุง 1/5, อังกะลุง 1/6, พักกลางวัน, เตรียมสอน, ดนตรีไทย 1/4, ดนตรีไทย 1/7, โฮมรูม
+อังกะลุง 1/5,เตรียมสอน,  ดนตรีไทย 1/3,  พักกลางวัน, เตรียมสอน, ขลุ่ย 2/5, เตรียมสอน, กิจกรรม 5/4
+เตรียมสอน, เตรียมสอน, ขลุ่ย 2/2, พักกลางวัน, ดนตรีไทย 1/1, ดนตรีไทย 1/2, ขลุ่ย 2/3, ลูกเสือ
+ขลุ่ย 2/1, ดนตรีไทย 1/6, เตรียมสอน, พักกลางวัน, ดนตรีไทย 1/5, ขลุ่ย 2/4, เตรียมสอน, ชุมนุม
+เตรียมสอน, เตรียมสอน, อังกะลุง 1/6, พักกลางวัน, เตรียมสอน, ดนตรีไทย 1/8, เตรียมสอน, คุณธรรม`
+
 function currentTime() {
   //ตั้งตัวแปร ชั่วโมง นาที วินาที
   let date = new Date();
@@ -79,12 +84,6 @@ function currentTime() {
   // ตั้งตัวแปร period สำหรับคาบ คาบละ 50 นาที (ทำซ้ำอีก?)
   let period = Math.floor((hm - 470) / 50);
 
-all_subjects = `เตรียมสอน, อังกะลุง 1/5, อังกะลุง 1/6, พักกลางวัน, เตรียมสอน, ดนตรีไทย 1/4, ดนตรีไทย 1/7, โฮมรูม
-อังกะลุง 1/5,เตรียมสอน,  ดนตรีไทย 1/3,  พักกลางวัน, เตรียมสอน, ขลุ่ย 2/5, เตรียมสอน, กิจกรรม 5/4
-เตรียมสอน, เตรียมสอน, ขลุ่ย 2/2, พักกลางวัน, ดนตรีไทย 1/1, ดนตรีไทย 1/2, ขลุ่ย 2/3, ลูกเสือ
-ขลุ่ย 2/1, ดนตรีไทย 1/6, เตรียมสอน, พักกลางวัน, ดนตรีไทย 1/5, ขลุ่ย 2/4, เตรียมสอน, ชุมนุม
-เตรียมสอน, เตรียมสอน, อังกะลุง 1/6, พักกลางวัน, เตรียมสอน, ดนตรีไทย 1/8, เตรียมสอน, คุณธรรม`
-
 let all_subjects_arr = all_subjects.split("\n")
   var subjects = ""
   // แสดงข้อความชือวิชาตามวันตามคาบ
@@ -99,11 +98,12 @@ let all_subjects_arr = all_subjects.split("\n")
   } else if (day === 5) {
     var subjects = all_subjects_arr[day-1].split(",")
   } else {
+    //อันนี้ต้องลบทิ้ง แต่ยังก่อน
     document.getElementById("subjectName").innerText = "";
   }
-  document.getElementById("subjectName").innerText = subjects[period - 1];
+  document.getElementById("subjectName").innerText = subjects[period - 1] === undefined ? "" : subjects[period - 1];
   // แสดงข้อความชื่อวิชาคาบต่อไป
-  document.getElementById("nextSubjectName").innerText = "คาบต่อไป " + subjects[period];
+  document.getElementById("nextSubjectName").innerText = subjects[period - 1] === undefined ? "" : "คาบต่อไป " + subjects[period];
 
   // ถ้า period มากว่า 7 หรือน้อยกว่า 0 แสดงความว่างเปล่า
   if (period - 1 > 7 || period - 1 < 0) {
@@ -120,12 +120,12 @@ let all_subjects_arr = all_subjects.split("\n")
 //เรียกฟังก์ชัน currentTime() ตอนเปิดเว็บ
 currentTime();
 
-console.log(all_subjects);
-
+//สร้างตารางจาก all_subjects
+//แปลงข้อมูลเป็น Array ด้วยการแยก บรรทัด
 let newLineArr = all_subjects.split(/\n/g);
-//find length
+//หาความยาวของ Array
 let newLineArrLen = newLineArr.length;
-//make variable
+//สร้างตัวแปร
 let HTMLTableOutput = "";
 
 // looping for create new line on display
