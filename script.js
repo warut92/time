@@ -1,6 +1,6 @@
 //พิมพ์ข้อมูลวิชา
 let all_subjects = `เตรียมสอน, อังกะลุง 1/5, อังกะลุง 1/6, พักกลางวัน, เตรียมสอน, ดนตรีไทย 1/4, ดนตรีไทย 1/7, โฮมรูม
-อังกะลุง 1/5,เตรียมสอน,  ดนตรีไทย 1/3,  พักกลางวัน, เตรียมสอน, ขลุ่ย 2/5, เตรียมสอน, กิจกรรม 5/4
+อังกะลุง 1/5,เตรียมสอน,  ดนตรีไทย 1/3,  พักกลางวัน(เวร), เตรียมสอน, ขลุ่ย 2/5, เตรียมสอน, กิจกรรม 5/4
 เตรียมสอน, เตรียมสอน, ขลุ่ย 2/2, พักกลางวัน, ดนตรีไทย 1/1, ดนตรีไทย 1/2, ขลุ่ย 2/3, ลูกเสือ
 ขลุ่ย 2/1, ดนตรีไทย 1/6, เตรียมสอน, พักกลางวัน, ดนตรีไทย 1/5, ขลุ่ย 2/4, เตรียมสอน, ชุมนุม
 เตรียมสอน, เตรียมสอน, อังกะลุง 1/6, พักกลางวัน, เตรียมสอน, ดนตรีไทย 1/8, เตรียมสอน, คุณธรรม`
@@ -77,9 +77,9 @@ function currentTime() {
       elem.style.width = widthPercent + "%";
 
   // เปลี่ยนสีตามวัน day มาจาก getDay
-  const dayColor = ["Crimson", "Gold", "DeepPink", "Green", "DarkOrange", "DeepSkyBlue", "BlueViolet"];
-  let color = dayColor[day];
-  document.body.style.backgroundColor = color;
+  // const dayColor = ["Crimson", "Orange", "DeepPink", "Green", "DarkOrange", "DeepSkyBlue", "BlueViolet"];
+  // let color = dayColor[day];
+  // document.body.style.backgroundColor = color;
 
   // ตั้งตัวแปร period สำหรับคาบ คาบละ 50 นาที (ทำซ้ำอีก?)
   let period = Math.floor((hm - 470) / 50);
