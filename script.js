@@ -80,9 +80,9 @@ function runProgram() {
       elem.style.width = widthPercent + "%";
 
   // เปลี่ยนสีตามวัน day มาจาก getDay
-  const dayColor = ["Crimson", "Orange", "DeepPink", "Green", "DarkOrange", "DeepSkyBlue", "BlueViolet"];
-  let color = dayColor[day];
-  document.body.style.backgroundColor = color;
+  // const dayColor = ["Crimson", "Orange", "DeepPink", "Green", "DarkOrange", "DeepSkyBlue", "BlueViolet"];
+  // let color = dayColor[day];
+  // document.body.style.backgroundColor = color;
 
   // ตั้งตัวแปร period สำหรับคาบ คาบละ 50 นาที (ทำซ้ำอีก?)
   let period = Math.floor((hm - 470) / 50);
@@ -106,7 +106,7 @@ let all_subjects_arr = all_subjects.split("\n")
   }
   document.getElementById("subjectName").innerText = subjects[period - 1] === undefined ? "" : subjects[period - 1];
   // แสดงข้อความชื่อวิชาคาบต่อไป
-  document.getElementById("nextSubjectName").innerText = subjects[period - 1] === undefined ? "" : "คาบต่อไป " + subjects[period];
+  document.getElementById("nextSubjectName").innerText = subjects[period] === undefined ? "" : "คาบต่อไป " + subjects[period];
 
   // ถ้า period มากว่า 7 หรือน้อยกว่า 0 แสดงความว่างเปล่า
   if (period - 1 > 7 || period - 1 < 0) {
