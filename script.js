@@ -1,11 +1,14 @@
-//พิมพ์ข้อมูลวิชา
-let all_subjects = `เตรียมสอน, อังกะลุง 1/5, อังกะลุง 1/6, พักกลางวัน, เตรียมสอน, ดนตรีไทย 1/4✅, ดนตรีไทย 1/7, โฮมรูม, ซ้อมดนตรีไทย
-อังกะลุง 1/5,เตรียมสอน,  ดนตรีไทย 1/3✅,  พักกลางวัน(เวร), เตรียมสอน, ขลุ่ย 2/5✅, เตรียมสอน, กิจกรรม 5/4, ซ้อมดนตรีไทย
-เตรียมสอน, เตรียมสอน, ขลุ่ย 2/2, พักกลางวัน, ดนตรีไทย 1/1, ดนตรีไทย 1/2, ขลุ่ย 2/3, ลูกเสือ, ซ้อมดนตรีไทย
-ขลุ่ย 2/1, ดนตรีไทย 1/6, เตรียมสอน, พักกลางวัน, ดนตรีไทย 1/5, ขลุ่ย 2/4, เตรียมสอน, ชุมนุม, ซ้อมดนตรีไทย
-เตรียมสอน, เตรียมสอน, อังกะลุง 1/6, พักกลางวัน, เตรียมสอน,  เตรียมสอน, ดนตรีไทย 1/8✅, คุณธรรม, ซ้อมดนตรีไทย`
+//แสดงวันที่หน้าเว็บ
+const fullDate = new Date();
+const options = {
+  weekday: 'long',
+  month: 'long',
+  day: 'numeric',
+};
+let fullYear = fullDate.getFullYear() + 543
+document.getElementById("date").innerHTML = fullDate.toLocaleDateString('th-TH', options) + " พ.ศ. " + fullYear
 
-function currentTime() {
+function runProgram() {
   //ตั้งตัวแปร ชั่วโมง นาที วินาที
   let date = new Date();
   let hh = date.getHours();
@@ -32,16 +35,16 @@ function currentTime() {
   // day = 0 //for test
   if (day == 0 || day == 6) {
     document.getElementById("periodText").innerText = "วันนี้วันหยุด";
-    //เรียกฟังก์ชัน currentTime() ทุก 1 วินาที (มีผลต่อการแสดง เวลาปัจจุบัน)
+    //เรียกฟังก์ชัน runProgram() ทุก 1 วินาที (มีผลต่อการแสดง เวลาปัจจุบัน)
     let t = setTimeout(function() {
-      currentTime()
+      runProgram()
     }, 1000);
   } else {
 
     //ตั้งตัวแปร period สำหรับคาบ คาบละ 50 นาที
     //
     // 470 คือ 470 นาที เริ่มนับตั้งแต่เที่ยงคืนถึง 7:50
-    let period = Math.floor((hm - 470) / 50);
+    let period = Math.floor((hm - 470) / 55);
     if (d == 0 || d == 6) {
       period = "วันนี้วันหยุด"
     } else if (period < 1) {
@@ -71,15 +74,15 @@ function currentTime() {
   }
   //progress bar
       var elem = document.getElementById("myBar");
-      var width = 50 - ((hm - 470) % 50);
-      let widthPercent = (50 - width)*100/50;
-      // console.log('WIDTH', (50 - width)*100/50);
+      let restTime = 50 - ((hm - 470) % 50)
+      let widthPercent = (restTime * 2)
+      console.log(widthPercent); 
       elem.style.width = widthPercent + "%";
 
   // เปลี่ยนสีตามวัน day มาจาก getDay
-  // const dayColor = ["Crimson", "Orange", "DeepPink", "Green", "DarkOrange", "DeepSkyBlue", "BlueViolet"];
-  // let color = dayColor[day];
-  // document.body.style.backgroundColor = color;
+  const dayColor = ["Crimson", "Orange", "DeepPink", "Green", "DarkOrange", "DeepSkyBlue", "BlueViolet"];
+  let color = dayColor[day];
+  document.body.style.backgroundColor = color;
 
   // ตั้งตัวแปร period สำหรับคาบ คาบละ 50 นาที (ทำซ้ำอีก?)
   let period = Math.floor((hm - 470) / 50);
@@ -111,14 +114,14 @@ let all_subjects_arr = all_subjects.split("\n")
     document.getElementById("nextSubjectName").innerText = "";
   }
 
-  //เรียกฟังก์ชัน currentTime() ทุก 1 วินาที (มีผลต่อการแสดง เวลาปัจจุบัน)
+  //เรียกฟังก์ชัน runProgram() ทุก 1 วินาที (มีผลต่อการแสดง เวลาปัจจุบัน)
   setTimeout(() => {
-    currentTime()
+    runProgram()
   }, 1000);
 }
 
-//เรียกฟังก์ชัน currentTime() ตอนเปิดเว็บ
-currentTime();
+//เรียกฟังก์ชัน runProgram() ตอนเปิดเว็บ
+runProgram();
 
 //สร้างตารางจาก all_subjects
 //แปลงข้อมูลเป็น Array ด้วยการแยก บรรทัด
@@ -127,12 +130,14 @@ let newLineArr = all_subjects.split(/\n/g);
 let newLineArrLen = newLineArr.length;
 //สร้างตัวแปร
 let HTMLTableOutput = "";
+//Array dayname in a week
+const d_name = ["จ. " , "อ. ", "พ. ", "พฤ.", "ศ. ", ""]
 
 // looping for create new line on display
   for (let i = 0; i < newLineArrLen; i++) {
-    HTMLTableOutput += "<tr><td>" + newLineArr[i] + "</td></tr>" + "\n";
+    HTMLTableOutput += "<tr><td>" + d_name[i] + newLineArr[i] + "</td></tr>" + "\n";
   }
-  // console.log('HTMLTABLEOUTPUT', HTMLTableOutput)
+  console.log('HTMLTABLEOUTPUT', HTMLTableOutput)
   //replace comma with table tag form
   HTMLTableOutput = HTMLTableOutput.replace(/,/g, "</td><td>");
 

@@ -9,38 +9,23 @@
 
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<p id="date">
-<div id ="clock" class="clock" onload="currentTime()"></div>
-<div id ="periodText" class="periodText"></div>
-<div id="subjectName" class="subjectName"></div>
-<div id ="coutDownClock" class="coutDownClock"></div>
-<div id="nextSubjectName" class="nextSubjectName"></div>
-<div id="myProgress">
-  <div id="myBar"></div>
-</div>
-<br>
-<center>
-<div>
-  <div id="output_table">
-<script type="text/javascript">
-var mydate = new Date()
-var year = mydate.getYear() + 543
-    if (year < 1000)
-        year += 1900
-        var day = mydate.getDay()
-        var month = mydate.getMonth()
-        var daym = mydate.getDate()
-            if (daym < 10)
-                daym = "0" + daym
-        var montharray = new Array("มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม")
+  <div id="main">
+    <p id="date">
+    <div id ="clock" class="clock" onload="currentTime()"></div>
+    <div id ="periodText" class="periodText"></div>
+    <div id="subjectName" class="subjectName"></div>
+    <div id ="coutDownClock" class="coutDownClock"></div>
+    <div id="nextSubjectName" class="nextSubjectName"></div>
+    <div id="myProgress">
+      <div id="myBar"></div>
+    </div>
+    <br>
+    <center>
+      <div id="output_table"></div>
+    </center>  
+  </div>
 
-        const weekday = ["อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์"];
-        var day = weekday[mydate.getDay()];
-        document.getElementById("date").innerHTML = "วัน" + day + "ที่  " + daym + " " + montharray[month] + " พ.ศ. " + year;
-</script>
-<!-- partial -->
+<script  src="./mySubjects.js"></script>
   <script  src="./script.js"></script>
-
 </body>
 </html>
