@@ -24,27 +24,24 @@ function runProgram() {
   mm = (mm < 10) ? "0" + mm : mm;
   ss = (ss < 10) ? "0" + ss : ss;
 
-  //เวลาปัจจุบัน
+  //เวลาปัจจุบัน รันทุกวินาที
   let time = hh + ":" + mm + ":" + ss;
   document.getElementById("clock").innerText = time;
 
   //ตั้งตัวแปร วัน
   const d = new Date();
   let day = d.getDay();
-  //ถ้าเป็นวันเสาร์ อาทิตย์ ให้แสดงข้อความ "วันนี้วันหยุด"
-  // day = 0 //for test
-  if (day == 0 || day == 6) {
-    document.getElementById("periodText").innerText = "วันนี้วันหยุด";
-    //เรียกฟังก์ชัน runProgram() ทุก 1 วินาที (มีผลต่อการแสดง เวลาปัจจุบัน)
-    let t = setTimeout(function() {
-      runProgram()
-    }, 1000);
-  } else {
 
-    //ตั้งตัวแปร period สำหรับคาบ คาบละ 50 นาที
-    //
-    // 470 คือ 470 นาที เริ่มนับตั้งแต่เที่ยงคืนถึง 7:50
-    let period = Math.floor((hm - 470) / 55);
+  //ตั้งตัวแปร timePeriod สำหรับคาบละ 55 นาที
+  let timePeriod = 55
+
+  // หาลำดับของคาบ 
+  // 470 คือ 470 นาที เริ่มนับตั้งแต่เที่ยงคืนถึง 7:50 = คาบที่ 0
+  // console.log(7*60+50);
+    
+    let period = Math.floor((hm - 470) / timePeriod);
+    //แสดงข้อความในคาบต่าง ๆ ตามเงื่อนไข
+    //หากเป็นวันหยุด
     if (d == 0 || d == 6) {
       period = "วันนี้วันหยุด"
     } else if (period < 1) {
@@ -59,34 +56,34 @@ function runProgram() {
     document.getElementById("periodText").innerText = period;
 
     // ตัวนับถอยหลัง
-    var coutDownClock = 50 - ((hm - 470) % 50);
+    // 470 คือ 470 นาที เริ่มนับตั้งแต่เที่ยงคืนถึง 7:50 นำไปหาเศษ (%) จากการหารด้วย timePeriod
+    // แล้วตั้งลบด้วย timePeriod เพื่อต้องการหาเศษ
+    var coutDownClock = timePeriod - ((hm - 470) % timePeriod);
     // console.log('COUTDOWNCLOCK', coutDownClock)
-    coutDownClock = "เหลือเวลา " + coutDownClock + " นาที";
+    let coutDownClockTxt = "เหลือเวลา " + coutDownClock + " นาที";
     if (period == "หมดเวลางาน" || period == "อรุณสวัสดิ์") {
       document.getElementById("coutDownClock").innerText = "";
     } else {
-      document.getElementById("coutDownClock").innerText = coutDownClock;
+      document.getElementById("coutDownClock").innerText = coutDownClockTxt;
     }
-
     if (hh >= 22) {
       document.getElementById("periodText").innerText = "ราตรีสวัสดิ์";
     }
-  }
+
   //progress bar
       var elem = document.getElementById("myBar");
-      let restTime = 50 - ((hm - 470) % 50)
-      let widthPercent = (restTime * 2)
-      console.log(widthPercent); 
-      elem.style.width = widthPercent + "%";
+      //เวลาที่เหลือ = เวลาในคาบ - เวลาที่เหลือ (เป็นเวลานับถอยหลัง)
+      let timePassed = timePeriod - coutDownClock
+      //คิดเป็นร้อยละ
+      let restTimeInPercent = (100 * timePassed) / 55
+      elem.style.width = restTimeInPercent + "%";
 
   // เปลี่ยนสีตามวัน day มาจาก getDay
   // const dayColor = ["Crimson", "Orange", "DeepPink", "Green", "DarkOrange", "DeepSkyBlue", "BlueViolet"];
   // let color = dayColor[day];
   // document.body.style.backgroundColor = color;
-
-  // ตั้งตัวแปร period สำหรับคาบ คาบละ 50 นาที (ทำซ้ำอีก?)
-  let period = Math.floor((hm - 470) / 50);
-
+ 
+  // all_subjects ตัวแปรจาก mySubjects.js
 let all_subjects_arr = all_subjects.split("\n")
   var subjects = ""
   // แสดงข้อความชือวิชาตามวันตามคาบ
@@ -137,7 +134,7 @@ const d_name = ["จ. " , "อ. ", "พ. ", "พฤ.", "ศ. ", ""]
   for (let i = 0; i < newLineArrLen; i++) {
     HTMLTableOutput += "<tr><td>" + d_name[i] + newLineArr[i] + "</td></tr>" + "\n";
   }
-  console.log('HTMLTABLEOUTPUT', HTMLTableOutput)
+  // console.log('HTMLTABLEOUTPUT', HTMLTableOutput)
   //replace comma with table tag form
   HTMLTableOutput = HTMLTableOutput.replace(/,/g, "</td><td>");
 
