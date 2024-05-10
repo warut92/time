@@ -42,7 +42,7 @@ function runProgram() {
     let periodTxt = ""
     //แสดงข้อความในคาบต่าง ๆ ตามเงื่อนไข
     //หากเป็นวันหยุด
-    if (d == 0 || d == 6) {
+    if (day == 0 || day == 6) {
       periodTxt = "วันนี้วันหยุด"
     } else if (period < 1) {
       periodTxt = "อรุณสวัสดิ์";
