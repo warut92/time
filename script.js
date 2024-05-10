@@ -29,8 +29,7 @@ function runProgram() {
   document.getElementById("clock").innerText = time;
 
   //ตั้งตัวแปร วัน
-  const d = new Date();
-  let day = d.getDay();
+  let day = date.getDay();
 
   //ตั้งตัวแปร timePeriod สำหรับคาบละ 55 นาที
   let timePeriod = 55
@@ -40,20 +39,21 @@ function runProgram() {
   // console.log(7*60+50);
     
     let period = Math.floor((hm - 470) / timePeriod);
+    let periodTxt = ""
     //แสดงข้อความในคาบต่าง ๆ ตามเงื่อนไข
     //หากเป็นวันหยุด
     if (d == 0 || d == 6) {
-      period = "วันนี้วันหยุด"
+      periodTxt = "วันนี้วันหยุด"
     } else if (period < 1) {
-      period = "อรุณสวัสดิ์";
+      periodTxt = "อรุณสวัสดิ์";
     } else if (period > 10) {
-      period = "หมดเวลางาน";
+      periodTxt = "หมดเวลางาน";
     } else if (period > 8) {
-      period = "เวลาซ้อม";
+      periodTxt = "เวลาซ้อม";
     } else {
-      period = "คาบ " + period;
+      periodTxt = "คาบ " + period;
     }
-    document.getElementById("periodText").innerText = period;
+    document.getElementById("periodText").innerText = periodTxt;
 
     // ตัวนับถอยหลัง
     // 470 คือ 470 นาที เริ่มนับตั้งแต่เที่ยงคืนถึง 7:50 นำไปหาเศษ (%) จากการหารด้วย timePeriod
@@ -101,7 +101,7 @@ let all_subjects_arr = all_subjects.split("\n")
     //อันนี้ต้องลบทิ้ง แต่ยังก่อน
     document.getElementById("subjectName").innerText = "";
   }
-  document.getElementById("subjectName").innerText = subjects[period - 1] === undefined ? "" : subjects[period - 1];
+  document.getElementById("subjectName").innerText = subjects[period - 1] === undefined ? "" : subjects[period];
   // แสดงข้อความชื่อวิชาคาบต่อไป
   document.getElementById("nextSubjectName").innerText = subjects[period] === undefined ? "" : "คาบต่อไป " + subjects[period];
 
