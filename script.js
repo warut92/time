@@ -36,9 +36,10 @@ function runProgram() {
 
   // หาลำดับของคาบ 
   // 470 คือ 470 นาที เริ่มนับตั้งแต่เที่ยงคืนถึง 7:50 = คาบที่ 0
-  // console.log(7*60+50);
+  // console.log(day);
+  let startingTime = 7 * 60 + 35
     
-    let period = Math.floor((hm - 470) / timePeriod);
+    let period = Math.floor((hm - startingTime) / timePeriod);
     let periodTxt = ""
     //แสดงข้อความในคาบต่าง ๆ ตามเงื่อนไข
     //หากเป็นวันหยุด
@@ -56,9 +57,8 @@ function runProgram() {
     document.getElementById("periodText").innerText = periodTxt;
 
     // ตัวนับถอยหลัง
-    // 470 คือ 470 นาที เริ่มนับตั้งแต่เที่ยงคืนถึง 7:50 นำไปหาเศษ (%) จากการหารด้วย timePeriod
     // แล้วตั้งลบด้วย timePeriod เพื่อต้องการหาเศษ
-    var coutDownClock = timePeriod - ((hm - 470) % timePeriod);
+    var coutDownClock = timePeriod - ((hm - startingTime) % timePeriod);
     // console.log('COUTDOWNCLOCK', coutDownClock)
     let coutDownClockTxt = "เหลือเวลา " + coutDownClock + " นาที";
     if (period == "หมดเวลางาน" || period == "อรุณสวัสดิ์") {
@@ -101,7 +101,7 @@ let all_subjects_arr = all_subjects.split("\n")
     //อันนี้ต้องลบทิ้ง แต่ยังก่อน
     document.getElementById("subjectName").innerText = "";
   }
-  document.getElementById("subjectName").innerText = subjects[period - 1] === undefined ? "" : subjects[period];
+  document.getElementById("subjectName").innerText = subjects[period - 1] === undefined ? "" : subjects[period - 1];
   // แสดงข้อความชื่อวิชาคาบต่อไป
   document.getElementById("nextSubjectName").innerText = subjects[period] === undefined ? "" : "คาบต่อไป " + subjects[period];
 
@@ -132,11 +132,10 @@ const d_name = ["จ. " , "อ. ", "พ. ", "พฤ.", "ศ. ", ""]
 
 // looping for create new line on display
   for (let i = 0; i < newLineArrLen; i++) {
-    HTMLTableOutput += "<tr><td>" + d_name[i] + newLineArr[i] + "</td></tr>" + "\n";
+    HTMLTableOutput += "<tr><td>" + d_name[i] + "</td>\n<td>" + newLineArr[i] + "</td></tr>" + "\n";
   }
-  // console.log('HTMLTABLEOUTPUT', HTMLTableOutput)
   //replace comma with table tag form
-  HTMLTableOutput = HTMLTableOutput.replace(/,/g, "</td><td>");
+  HTMLTableOutput = HTMLTableOutput.replace(/,/g, "</td>\n<td>");
 
   if (HTMLTableOutput !== "<tr><td></td></tr>\n") {
     document.getElementById("output_table").innerHTML =
