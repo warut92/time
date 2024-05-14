@@ -33,6 +33,7 @@ function runProgram() {
 
   //ตั้งตัวแปร timePeriod สำหรับคาบละ 55 นาที
   let timePeriod = 55
+  let timePeriod_8 = 0
 
   // หาลำดับของคาบ 
   // 470 คือ 470 นาที เริ่มนับตั้งแต่เที่ยงคืนถึง 7:50 = คาบที่ 0
@@ -58,9 +59,16 @@ function runProgram() {
 
     // ตัวนับถอยหลัง
     // แล้วตั้งลบด้วย timePeriod เพื่อต้องการหาเศษ
-    var coutDownClock = timePeriod - ((hm - startingTime) % timePeriod);
+    var coutDownClock = timePeriod - ((hm - startingTime) % 25);
     // console.log('COUTDOWNCLOCK', coutDownClock)
-    let coutDownClockTxt = "เหลือเวลา " + coutDownClock + " นาที";
+    //ตั้งค่าตัวแปร เวลาสำหรับคาบที่ 8 = 25 นาที
+    if (period === 8) {
+      timePeriod_8 = 25
+    }
+    if (period > 8) {
+      timePeriod_8 = 120
+    }
+    let coutDownClockTxt = "เหลือเวลา " + (coutDownClock - timePeriod_8) + " นาที";
     if (period == "หมดเวลางาน" || period == "อรุณสวัสดิ์") {
       document.getElementById("coutDownClock").innerText = "";
     } else {
@@ -68,6 +76,11 @@ function runProgram() {
     }
     if (hh >= 22) {
       document.getElementById("periodText").innerText = "ราตรีสวัสดิ์";
+    }
+
+    //หากเกินคาบ 8 ในซ่อนการจับเวลาถอยหลัง
+    if (period > 8) {
+      document.getElementById("coutDownClock").style.display = "none";
     }
 
   //progress bar
