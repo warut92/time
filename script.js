@@ -59,16 +59,15 @@ function runProgram() {
 
     // ตัวนับถอยหลัง
     // แล้วตั้งลบด้วย timePeriod เพื่อต้องการหาเศษ
-    var coutDownClock = timePeriod - ((hm - startingTime) % 25);
-    // console.log('COUTDOWNCLOCK', coutDownClock)
     //ตั้งค่าตัวแปร เวลาสำหรับคาบที่ 8 = 25 นาที
     if (period === 8) {
-      timePeriod_8 = 25
-    }
-    if (period > 8) {
+      timePeriod = 25
+    } else if (period > 8) {
       timePeriod_8 = 120
     }
-    let coutDownClockTxt = "เหลือเวลา " + (coutDownClock - timePeriod_8) + " นาที";
+    var coutDownClock = timePeriod - ((hm - startingTime) % timePeriod);
+    // console.log('COUTDOWNCLOCK', coutDownClock)
+    let coutDownClockTxt = "เหลือเวลา " + coutDownClock + " นาที";
     if (period == "หมดเวลางาน" || period == "อรุณสวัสดิ์") {
       document.getElementById("coutDownClock").innerText = "";
     } else {
