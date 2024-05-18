@@ -61,24 +61,29 @@ function runProgram() {
     // แล้วตั้งลบด้วย timePeriod เพื่อต้องการหาเศษ
     //ตั้งค่าตัวแปร เวลาสำหรับคาบที่ 8 = 25 นาที
     if (period === 8) {
-      timePeriod = 25
+      timePeriod = 30
+      //ถ้าคาบมากกว่าคาบ 8 ให้นับเวลาถอยหลัง 2 ชั่วโมงหรือ 120 นาที
     } else if (period > 8) {
-      timePeriod_8 = 120
+      timePeriod = 120
     }
+    //ตั้งตัวแปรนับเวลาถอยหลัง
     var coutDownClock = timePeriod - ((hm - startingTime) % timePeriod);
     // console.log('COUTDOWNCLOCK', coutDownClock)
+    //ตั้งตัวแปรเวลาถอยหลังกับข้อความ
     let coutDownClockTxt = "เหลือเวลา " + coutDownClock + " นาที";
-    if (period == "หมดเวลางาน" || period == "อรุณสวัสดิ์") {
-      document.getElementById("coutDownClock").innerText = "";
-    } else {
+    if (hh) {
       document.getElementById("coutDownClock").innerText = coutDownClockTxt;
-    }
-    if (hh >= 22) {
+      //หากเป็นเวลา 22.00 ให้ขึ้นข้อความ "ราตรีสวัสดิ์"
+    } else if (hh >= 22) {
       document.getElementById("periodText").innerText = "ราตรีสวัสดิ์";
     }
 
-    //หากเกินคาบ 8 ในซ่อนการจับเวลาถอยหลัง
+    //หากเกินคาบ 8 ในซ่อนตัวนับเวลาถอยหลัง
     if (period > 8) {
+      document.getElementById("coutDownClock").style.display = "none";
+    }
+    //หากเป็นวันเสาร์-อาทิตย์ให้ซ่อนตัวนับถอยหลัง
+    if (day === 6 || day === 0) {
       document.getElementById("coutDownClock").style.display = "none";
     }
 
@@ -99,6 +104,7 @@ function runProgram() {
 let all_subjects_arr = all_subjects.split("\n")
   var subjects = ""
   // แสดงข้อความชือวิชาตามวันตามคาบ
+  //โดยการเลือกดัชนีของอาร์เรย์ all_subjects_arr
   if (day === 1) {
     var subjects = all_subjects_arr[day-1].split(",")
   } else if (day === 2) {
