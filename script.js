@@ -5,116 +5,135 @@ const options = {
   month: 'long',
   day: 'numeric',
 };
-let fullYear = fullDate.getFullYear() + 543
-document.getElementById("date").innerHTML = fullDate.toLocaleDateString('th-TH', options) + " พ.ศ. " + fullYear
+let FULLYEAR = fullDate.getFullYear() + 543
+document.getElementById("date").innerHTML = fullDate.toLocaleDateString('th-TH', options) + " พ.ศ. " + FULLYEAR
 
 function runProgram() {
   //ตั้งตัวแปร ชั่วโมง นาที วินาที
   let date = new Date();
-  let hh = date.getHours();
-  let mm = date.getMinutes();
-  let ss = date.getSeconds();
+  let HOURS = date.getHours();
+  let MINUTES = date.getMinutes();
+  let SECONDS = date.getSeconds();
+
+  //for test
+  HOURS = 15;
+  MINUTES = 20;
 
   //แปลงชั่วโมงเป็นนาที
-  let hm = (hh * 60) + mm;
-  // console.log(hm);
+  let HOURS_MINUTES = (HOURS * 60) + MINUTES;
+  console.log(HOURS_MINUTES);
 
   //เติมเลข 0 ให้กับชั่วโมงที่มีค่าน้อยว่า 9
-  hh = (hh < 10) ? "0" + hh : hh;
-  mm = (mm < 10) ? "0" + mm : mm;
-  ss = (ss < 10) ? "0" + ss : ss;
+  HOURS = (HOURS < 10) ? "0" + HOURS : HOURS;
+  MINUTES = (MINUTES < 10) ? "0" + MINUTES : MINUTES;
+  SECONDS = (SECONDS < 10) ? "0" + SECONDS : SECONDS;
 
   //เวลาปัจจุบัน รันทุกวินาที
-  let time = hh + ":" + mm + ":" + ss;
-  document.getElementById("clock").innerText = time;
+  let CURRENT_TIME = HOURS + ":" + MINUTES + ":" + SECONDS;
+  document.getElementById("clock").innerText = CURRENT_TIME;
 
   //ตั้งตัวแปร วัน
-  let day = date.getDay();
+  let DAY = date.getDay();
 
-  //ตั้งตัวแปร timePeriod สำหรับคาบละ 55 นาที
-  let timePeriod = 55
-  let timePeriod_8 = 0
+  //ตั้งตัวแปร TIME_PERIOD สำหรับคาบละ 55 นาที
+  let TIME_PERIOD = 55;
+  let TIME_PERIOD_25 = 25;
 
   // หาลำดับของคาบ 
-  // 470 คือ 470 นาที เริ่มนับตั้งแต่เที่ยงคืนถึง 7:50 = คาบที่ 0
-  // console.log(day);
-  let startingTime = 7 * 60 + 35
+  // เริ่มนับตั้งแต่เที่ยงคืนถึงคาบที่ 0
+  // โดยให้คาบแรกเริ่มที่ 7:35 (ซึ่งไม่ตรงกับในความเป็นจริง 
+  // แต่ใช้ไปก่อน เพราะยังไม่ต้องการแสดงข้อความเฉพาะในช่วงเวลาคาบที่ 0)
+  let STARTING_HOUR = 7;
+  let STARTING_MINUTE = 35;
+  let STARTING_TIME = (STARTING_HOUR * 60) + STARTING_MINUTE;
+  //คำนวณหาคาบ
+  let period = 0
+  period = Math.floor((HOURS_MINUTES - STARTING_TIME) / TIME_PERIOD);
+ 
+
+  let periodMessage = ""
+  //แสดงข้อความในคาบต่าง ๆ ตามเงื่อนไข
+  //หากเป็นวันหยุด
+  if (DAY == 0 || DAY == 6) {
+    periodMessage = "วันนี้วันหยุด"
+  } else if (period < 1) {
+    periodMessage = "อรุณสวัสดิ์";
+  } else if (period > 9) {
+    periodMessage = "หมดเวลางาน";
+  } else if (period > 8) {
+    periodMessage = "เวลาซ้อม";
+  } else {
+    periodMessage = "คาบ " + period;
+  }
+  document.getElementById("periodText").innerText = periodMessage;
+  console.log(period);
+
+  // ตัวนับถอยหลัง
+  // แล้วตั้งลบด้วย TIME_PERIOD เพื่อต้องการหาเศษ
+  //ตั้งค่าตัวแปร เวลาสำหรับคาบที่ 8 = 25 นาที
+  var coutDownClock = 0;
+  if (HOURS_MINUTES === 920) {
+    document.getElementById("periodText").innerHTML = "ฝึกซ้อมดนตรี";
+    document.getElementById("coutDownClock").style.display = "none";
+    document.getElementById("subjectName").style.display = "none";
+  } else if (period === 8) {
+    TIME_PERIOD = 25;
+    //นับถอยหลัง 25 นาที จาก เวลาที่จบคาบ 8 ลบด้วยเวลาปัจจุบัน 
+    coutDownClock = (15 * 60 + 20) - HOURS_MINUTES;
+    console.log("8");
+  }  else if (period < 8) {
+    coutDownClock = TIME_PERIOD - ((HOURS_MINUTES - STARTING_TIME) % TIME_PERIOD);
+  }
+  console.log("TIME_PERIOD", TIME_PERIOD);
+  //ตั้งตัวแปรนับเวลาถอยหลัง คิดจากเวลาที่เหลือในคาบนั้น ๆ
+
+  //ตั้งตัวแปรเวลาถอยหลังกับข้อความ
+  let coutDownClockText = "เหลือเวลา " + coutDownClock + " นาที";
+  if (HOURS) {
+    document.getElementById("coutDownClock").innerText = coutDownClockText;
+    //หากเป็นเวลา 22.00 ให้ขึ้นข้อความ "ราตรีสวัสดิ์"
+  } else if (HOURS >= 22) {
+    document.getElementById("periodText").innerText = "ราตรีสวัสดิ์";
+  }
+
+  //หากเกินคาบ 8 ในซ่อนตัวนับเวลาถอยหลัง
+  if (period > 8) {
     
-    let period = Math.floor((hm - startingTime) / timePeriod);
-    let periodTxt = ""
-    //แสดงข้อความในคาบต่าง ๆ ตามเงื่อนไข
-    //หากเป็นวันหยุด
-    if (day == 0 || day == 6) {
-      periodTxt = "วันนี้วันหยุด"
-    } else if (period < 1) {
-      periodTxt = "อรุณสวัสดิ์";
-    } else if (period > 10) {
-      periodTxt = "หมดเวลางาน";
-    } else if (period > 8) {
-      periodTxt = "เวลาซ้อม";
-    } else {
-      periodTxt = "คาบ " + period;
-    }
-    document.getElementById("periodText").innerText = periodTxt;
-
-    // ตัวนับถอยหลัง
-    // แล้วตั้งลบด้วย timePeriod เพื่อต้องการหาเศษ
-    //ตั้งค่าตัวแปร เวลาสำหรับคาบที่ 8 = 25 นาที
-    if (period === 8) {
-      timePeriod = 30
-      //ถ้าคาบมากกว่าคาบ 8 ให้นับเวลาถอยหลัง 2 ชั่วโมงหรือ 120 นาที
-    } else if (period > 8) {
-      timePeriod = 120
-    }
-    //ตั้งตัวแปรนับเวลาถอยหลัง
-    var coutDownClock = timePeriod - ((hm - startingTime) % timePeriod);
-    // console.log('COUTDOWNCLOCK', coutDownClock)
-    //ตั้งตัวแปรเวลาถอยหลังกับข้อความ
-    let coutDownClockTxt = "เหลือเวลา " + coutDownClock + " นาที";
-    if (hh) {
-      document.getElementById("coutDownClock").innerText = coutDownClockTxt;
-      //หากเป็นเวลา 22.00 ให้ขึ้นข้อความ "ราตรีสวัสดิ์"
-    } else if (hh >= 22) {
-      document.getElementById("periodText").innerText = "ราตรีสวัสดิ์";
-    }
-
-    //หากเกินคาบ 8 ในซ่อนตัวนับเวลาถอยหลัง
-    if (period > 8) {
-      document.getElementById("coutDownClock").style.display = "none";
-    }
-    //หากเป็นวันเสาร์-อาทิตย์ให้ซ่อนตัวนับถอยหลัง
-    if (day === 6 || day === 0) {
-      document.getElementById("coutDownClock").style.display = "none";
-    }
+    
+  }
+  //หากเป็นวันเสาร์-อาทิตย์ให้ซ่อนตัวนับถอยหลัง
+  if (DAY === 6 || DAY === 0) {
+    document.getElementById("coutDownClock").style.display = "none";
+  }
 
   //progress bar
-      var elem = document.getElementById("myBar");
-      //เวลาที่เหลือ = เวลาในคาบ - เวลาที่เหลือ (เป็นเวลานับถอยหลัง)
-      let timePassed = timePeriod - coutDownClock
-      //คิดเป็นร้อยละ
-      let restTimeInPercent = (100 * timePassed) / 55
-      elem.style.width = restTimeInPercent + "%";
+  var elem = document.getElementById("myBar");
+  //เวลาที่เหลือ = เวลาในคาบ - เวลาที่เหลือ (เป็นเวลานับถอยหลัง)
+  let TIME_PASSED = TIME_PERIOD - coutDownClock
+  //คิดเป็นร้อยละ
+  let restTimeInPercent = (100 * TIME_PASSED) / 55
+  elem.style.width = restTimeInPercent + "%";
 
-  // เปลี่ยนสีตามวัน day มาจาก getDay
-  // const dayColor = ["Crimson", "Orange", "DeepPink", "Green", "DarkOrange", "DeepSkyBlue", "BlueViolet"];
-  // let color = dayColor[day];
+  // เปลี่ยนสีตามวัน DAY มาจาก getDay
+  // const dayColor = ["Crimson", "Orange", "Pink", "Green", "DarkOrange", "DeepSkyBlue", "BlueViolet"];
+  // let color = dayColor[DAY];
   // document.body.style.backgroundColor = color;
- 
+
   // all_subjects ตัวแปรจาก mySubjects.js
-let all_subjects_arr = all_subjects.split("\n")
+  let all_subjects_arr = all_subjects.split("\n")
   var subjects = ""
   // แสดงข้อความชือวิชาตามวันตามคาบ
   //โดยการเลือกดัชนีของอาร์เรย์ all_subjects_arr
-  if (day === 1) {
-    var subjects = all_subjects_arr[day-1].split(",")
-  } else if (day === 2) {
-    var subjects = all_subjects_arr[day-1].split(",")
-  } else if (day === 3) {
-    var subjects = all_subjects_arr[day-1].split(",")
-  } else if (day === 4) {
-    var subjects = all_subjects_arr[day-1].split(",")
-  } else if (day === 5) {
-    var subjects = all_subjects_arr[day-1].split(",")
+  if (DAY === 1) {
+    var subjects = all_subjects_arr[DAY - 1].split(",")
+  } else if (DAY === 2) {
+    var subjects = all_subjects_arr[DAY - 1].split(",")
+  } else if (DAY === 3) {
+    var subjects = all_subjects_arr[DAY - 1].split(",")
+  } else if (DAY === 4) {
+    var subjects = all_subjects_arr[DAY - 1].split(",")
+  } else if (DAY === 5) {
+    var subjects = all_subjects_arr[DAY - 1].split(",")
   } else {
     //อันนี้ต้องลบทิ้ง แต่ยังก่อน
     document.getElementById("subjectName").innerText = "";
@@ -146,18 +165,18 @@ let newLineArrLen = newLineArr.length;
 //สร้างตัวแปร
 let HTMLTableOutput = "";
 //Array dayname in a week
-const d_name = ["จ. " , "อ. ", "พ. ", "พฤ.", "ศ. ", ""]
+const d_name = ["จ. ", "อ. ", "พ. ", "พฤ.", "ศ. ", ""]
 
 // looping for create new line on display
-  for (let i = 0; i < newLineArrLen; i++) {
-    HTMLTableOutput += "<tr><td>" + d_name[i] + "</td>\n<td>" + newLineArr[i] + "</td></tr>" + "\n";
-  }
-  //replace comma with table tag form
-  HTMLTableOutput = HTMLTableOutput.replace(/,/g, "</td>\n<td>");
+for (let i = 0; i < newLineArrLen; i++) {
+  HTMLTableOutput += "<tr><td>" + d_name[i] + "</td>\n<td>" + newLineArr[i] + "</td></tr>" + "\n";
+}
+//replace comma with table tag form
+HTMLTableOutput = HTMLTableOutput.replace(/,/g, "</td>\n<td>");
 
-  if (HTMLTableOutput !== "<tr><td></td></tr>\n") {
-    document.getElementById("output_table").innerHTML =
-      "<table style=&#34width:100%&#34>\n" + HTMLTableOutput + "</table>";
-  } else {
-    alert("empty data!");
-  }
+if (HTMLTableOutput !== "<tr><td></td></tr>\n") {
+  document.getElementById("output_table").innerHTML =
+    "<table style=&#34width:100%&#34>\n" + HTMLTableOutput + "</table>";
+} else {
+  alert("empty data!");
+}
