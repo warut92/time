@@ -16,8 +16,8 @@ function runProgram() {
   let SECONDS = date.getSeconds();
 
   //for test
-  HOURS = 15;
-  MINUTES = 20;
+  // HOURS = 15;
+  // MINUTES = 20;
 
   //แปลงชั่วโมงเป็นนาที
   let HOURS_MINUTES = (HOURS * 60) + MINUTES;
