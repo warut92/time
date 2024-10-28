@@ -66,7 +66,7 @@ function runProgram() {
     periodMessage = "คาบ " + period;
   }
   document.getElementById("periodText").innerText = periodMessage;
-  console.log(period);
+  console.log(periodMessage);
 
   // ตัวนับถอยหลัง
   // แล้วตั้งลบด้วย TIME_PERIOD เพื่อต้องการหาเศษ
@@ -86,9 +86,13 @@ function runProgram() {
   }
   console.log("TIME_PERIOD", TIME_PERIOD);
   //ตั้งตัวแปรนับเวลาถอยหลัง คิดจากเวลาที่เหลือในคาบนั้น ๆ
-
   //ตั้งตัวแปรเวลาถอยหลังกับข้อความ
-  let coutDownClockText = "เหลือเวลา " + coutDownClock + " นาที";
+  let coutDownClockText 
+  if (periodMessage === "หมดเวลางาน") {
+    coutDownClockText = ""
+  } else {
+    coutDownClockText = "เหลือเวลา " + coutDownClock + " นาที";
+  }
   if (HOURS) {
     document.getElementById("coutDownClock").innerText = coutDownClockText;
     //หากเป็นเวลา 22.00 ให้ขึ้นข้อความ "ราตรีสวัสดิ์"
