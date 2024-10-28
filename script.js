@@ -180,3 +180,21 @@ if (HTMLTableOutput !== "<tr><td></td></tr>\n") {
 } else {
   alert("empty data!");
 }
+// random background color
+// function changeBackground() {
+//   const hexClr = () =>
+//     "#" +
+//     Math.floor(Math.random() * 0xfffff)
+//       .toString(16)
+//       .padEnd(6, "8");
+
+
+//   let backgroundColor = hexClr();
+//   document.body.style.background = backgroundColor;
+//   console.log(backgroundColor);
+// }
+// changeBackground()
+
+// setInterval(changeBackground, 60000);
+// document.body.style.background = "#1c1b22"
+// document.body.style.color = "#1d2a35"
