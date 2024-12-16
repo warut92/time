@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai+Looped:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 body {
-  font-family: monospace;
+  font-family: "Noto Sans Thai Looped", sans-serif;
   color: white;
   background-color: navy;
 }
@@ -20,6 +22,8 @@ p {
 .periodText {
   font-size: 200px;
   text-align: center;
+  margin-top: -100px;
+  margin-bottom: -50px;
 }
 
 /* ชื่อวิชา */
@@ -32,6 +36,7 @@ p {
 .coutDownClock {
   font-size: 100px;
   text-align: center;
+  margin-top: -50px;
 }
 
 /* ชื่อคาบต่อไป */

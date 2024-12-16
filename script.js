@@ -36,21 +36,21 @@ function runProgram() {
   let DAY = date.getDay();
 
   //ตั้งตัวแปร TIME_PERIOD สำหรับคาบละ 55 นาที
-  let TIME_PERIOD = 55;
+  // let TIME_PERIOD = 55;
+  let TIME_PERIOD = 50;
   let TIME_PERIOD_25 = 25;
 
   // หาลำดับของคาบ 
   // เริ่มนับตั้งแต่เที่ยงคืนถึงคาบที่ 0
-  // โดยให้คาบแรกเริ่มที่ 7:35 (ซึ่งไม่ตรงกับในความเป็นจริง 
+  // โดยให้คาบแรกเริ่มที่ 7:40 (ซึ่งไม่ตรงกับในความเป็นจริง 
   // แต่ใช้ไปก่อน เพราะยังไม่ต้องการแสดงข้อความเฉพาะในช่วงเวลาคาบที่ 0)
   let STARTING_HOUR = 7;
-  let STARTING_MINUTE = 35;
+  let STARTING_MINUTE = 40;
   let STARTING_TIME = (STARTING_HOUR * 60) + STARTING_MINUTE;
   //คำนวณหาคาบ
   let period = 0
   period = Math.floor((HOURS_MINUTES - STARTING_TIME) / TIME_PERIOD);
  
-
   let periodMessage = ""
   //แสดงข้อความในคาบต่าง ๆ ตามเงื่อนไข
   //หากเป็นวันหยุด
@@ -72,8 +72,9 @@ function runProgram() {
   // แล้วตั้งลบด้วย TIME_PERIOD เพื่อต้องการหาเศษ
   //ตั้งค่าตัวแปร เวลาสำหรับคาบที่ 8 = 25 นาที
   var coutDownClock = 0;
-  if (HOURS_MINUTES === 920) {
-    document.getElementById("periodText").innerHTML = "ฝึกซ้อมดนตรี";
+  if (HOURS_MINUTES >= 920) {
+    console.log(HOURS_MINUTES, "123");
+    document.getElementById("periodText").innerHTML = "ฝึกซ้อม<br>ดนตรีไทย";
     document.getElementById("coutDownClock").style.display = "none";
     document.getElementById("subjectName").style.display = "none";
   } else if (period === 8) {
@@ -102,7 +103,6 @@ function runProgram() {
 
   //หากเกินคาบ 8 ในซ่อนตัวนับเวลาถอยหลัง
   if (period > 8) {
-    
     
   }
   //หากเป็นวันเสาร์-อาทิตย์ให้ซ่อนตัวนับถอยหลัง
