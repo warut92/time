@@ -34,15 +34,16 @@ function runProgram() {
 
   //ตั้งตัวแปร วัน
   let DAY = date.getDay();
-
+  console.log("วัน",DAY);
+  //สำหรับตั้งวันเฉพาะ
+  // DAY = 5
   //ตั้งตัวแปร TIME_PERIOD สำหรับคาบละ 55 นาที
   // let TIME_PERIOD = 55;
   let TIME_PERIOD = 50;
-  let TIME_PERIOD_25 = 25;
 
   // หาลำดับของคาบ 
   // เริ่มนับตั้งแต่เที่ยงคืนถึงคาบที่ 0
-  // โดยให้คาบแรกเริ่มที่ 7:40 (ซึ่งไม่ตรงกับในความเป็นจริง 
+  // โดยให้คาบแรก (คาบ 0) เริ่มที่ 7:40 (ซึ่งไม่ตรงกับในความเป็นจริง 
   // แต่ใช้ไปก่อน เพราะยังไม่ต้องการแสดงข้อความเฉพาะในช่วงเวลาคาบที่ 0)
   let STARTING_HOUR = 7;
   let STARTING_MINUTE = 40;
@@ -70,18 +71,16 @@ function runProgram() {
 
   // ตัวนับถอยหลัง
   // แล้วตั้งลบด้วย TIME_PERIOD เพื่อต้องการหาเศษ
-  //ตั้งค่าตัวแปร เวลาสำหรับคาบที่ 8 = 25 นาที
   var coutDownClock = 0;
   if (HOURS_MINUTES >= 920) {
-    console.log(HOURS_MINUTES, "123");
     document.getElementById("periodText").innerHTML = "ฝึกซ้อม<br>ดนตรีไทย";
     document.getElementById("coutDownClock").style.display = "none";
     document.getElementById("subjectName").style.display = "none";
-  } else if (period === 8) {
-    TIME_PERIOD = 25;
-    //นับถอยหลัง 25 นาที จาก เวลาที่จบคาบ 8 ลบด้วยเวลาปัจจุบัน 
+  } else if (period === 8) { // ตั้งค่าตัวแปร เวลาสำหรับคาบที่ 8 โดยเฉพาะ, = 25 นาที
+    // นับถอยหลัง 25 นาที จาก เวลาที่จบคาบ 8 ลบด้วยเวลาปัจจุบัน 
+    // นับถอยหลังถึง 15.20
     coutDownClock = (15 * 60 + 20) - HOURS_MINUTES;
-    console.log("8");
+    console.log("คาบ 8");
   }  else if (period < 8) {
     coutDownClock = TIME_PERIOD - ((HOURS_MINUTES - STARTING_TIME) % TIME_PERIOD);
   }
