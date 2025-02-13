@@ -72,7 +72,22 @@ function runProgram() {
   // ตัวนับถอยหลัง
   // แล้วตั้งลบด้วย TIME_PERIOD เพื่อต้องการหาเศษ
   var coutDownClock = 0;
-  if (HOURS_MINUTES >= 920) {
+  if (HOURS_MINUTES >= 1200) {
+    document.getElementById("periodText").innerHTML = "🛌💤😴";
+    document.getElementById("coutDownClock").style.display = "none";
+    document.getElementById("subjectName").style.display = "none";
+  }
+  else if (HOURS_MINUTES >= 1080) {
+    document.getElementById("periodText").innerHTML = "หมดเวลางาน";
+    document.getElementById("coutDownClock").style.display = "none";
+    document.getElementById("subjectName").style.display = "none";
+  }
+  else if (HOURS_MINUTES >= 1020) {
+    document.getElementById("periodText").innerHTML = "หมดเวลาซ้อม<br>นร. กลับบ้าน";
+    document.getElementById("coutDownClock").style.display = "none";
+    document.getElementById("subjectName").style.display = "none";
+  }
+  else if (HOURS_MINUTES >= 920) {   // 920 
     document.getElementById("periodText").innerHTML = "ฝึกซ้อม<br>ดนตรีไทย";
     document.getElementById("coutDownClock").style.display = "none";
     document.getElementById("subjectName").style.display = "none";
