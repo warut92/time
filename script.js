@@ -183,7 +183,7 @@ let newLineArrLen = newLineArr.length;
 //สร้างตัวแปร
 let HTMLTableOutput = "";
 //Array dayname in a week
-const d_name = ["จ. ", "อ. ", "พ. ", "พฤ.", "ศ. ", ""]
+const d_name = ["+ ", "จ. ", "อ. ", "พ. ", "พฤ.", "ศ. ", ""]
 
 // looping for create new line on display
 for (let i = 0; i < newLineArrLen; i++) {
@@ -193,7 +193,7 @@ for (let i = 0; i < newLineArrLen; i++) {
 HTMLTableOutput = HTMLTableOutput.replace(/,/g, "</td>\n<td>");
 
 if (HTMLTableOutput !== "<tr><td></td></tr>\n") {
-  document.getElementById("output_table").innerHTML =
+  document.getElementById("output_table").innerHTML = 
     "<table style=&#34width:100%&#34>\n" + HTMLTableOutput + "</table>";
 } else {
   alert("empty data!");
