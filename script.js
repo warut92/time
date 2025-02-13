@@ -183,7 +183,7 @@ let newLineArrLen = newLineArr.length;
 //สร้างตัวแปร
 let HTMLTableOutput = "";
 //Array dayname in a week
-const d_name = ["+ ", "จ. ", "อ. ", "พ. ", "พฤ.", "ศ. ", ""]
+const d_name = ["⏲️ ", "จ. ", "อ. ", "พ. ", "พฤ.", "ศ. ", ""]
 
 // looping for create new line on display
 for (let i = 0; i < newLineArrLen; i++) {
