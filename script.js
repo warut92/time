@@ -59,44 +59,38 @@ function runProgram() {
     periodMessage = "วันนี้วันหยุด"
   } else if (period < 1) {
     periodMessage = "อรุณสวัสดิ์";
-  } else if (period > 9) {
-    periodMessage = "หมดเวลางาน";
-  } else if (period > 8) {
-    periodMessage = "เวลาซ้อม";
   } else {
     periodMessage = "คาบ " + period;
   }
   document.getElementById("periodText").innerText = periodMessage;
   console.log(periodMessage);
 
-  // ตัวนับถอยหลัง
-  // แล้วตั้งลบด้วย TIME_PERIOD เพื่อต้องการหาเศษ
+  // เมื่อเวลา 15.30 ให้ซ่อนตัวนับถอยหลังและชื่อวิชา
+  if (HOURS_MINUTES >= 920) {   // 920 
+    document.getElementById("coutDownClock").style.display = "none";
+    document.getElementById("subjectName").style.display = "none";
+  }
+
   var coutDownClock = 0;
   if (HOURS_MINUTES >= 1200) {
     document.getElementById("periodText").innerHTML = "🛌💤😴";
-    document.getElementById("coutDownClock").style.display = "none";
-    document.getElementById("subjectName").style.display = "none";
   }
   else if (HOURS_MINUTES >= 1080) {
     document.getElementById("periodText").innerHTML = "หมดเวลางาน";
-    document.getElementById("coutDownClock").style.display = "none";
-    document.getElementById("subjectName").style.display = "none";
   }
   else if (HOURS_MINUTES >= 1020) {
     document.getElementById("periodText").innerHTML = "หมดเวลาซ้อม<br>นร. กลับบ้าน";
-    document.getElementById("coutDownClock").style.display = "none";
-    document.getElementById("subjectName").style.display = "none";
   }
   else if (HOURS_MINUTES >= 920) {   // 920 
     document.getElementById("periodText").innerHTML = "ฝึกซ้อม<br>ดนตรีไทย";
-    document.getElementById("coutDownClock").style.display = "none";
-    document.getElementById("subjectName").style.display = "none";
   } else if (period === 8) { // ตั้งค่าตัวแปร เวลาสำหรับคาบที่ 8 โดยเฉพาะ, = 25 นาที
     // นับถอยหลัง 25 นาที จาก เวลาที่จบคาบ 8 ลบด้วยเวลาปัจจุบัน 
     // นับถอยหลังถึง 15.20
     coutDownClock = (15 * 60 + 20) - HOURS_MINUTES;
     console.log("คาบ 8");
   }  else if (period < 8) {
+  // ตัวนับถอยหลัง
+  // แล้วตั้งลบด้วย TIME_PERIOD เพื่อต้องการหาเศษ
     coutDownClock = TIME_PERIOD - ((HOURS_MINUTES - STARTING_TIME) % TIME_PERIOD);
   }
   console.log("TIME_PERIOD", TIME_PERIOD);
