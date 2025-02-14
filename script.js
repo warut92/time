@@ -141,17 +141,17 @@ function runProgram() {
   let all_subjects_arr = all_subjects.split("\n")
   var subjects = ""
   // แสดงข้อความชือวิชาตามวันตามคาบ
-  //โดยการเลือกดัชนีของอาร์เรย์ all_subjects_arr
+  // โดยการเลือกดัชนีของอาร์เรย์ all_subjects_arr
   if (DAY === 1) {
-    var subjects = all_subjects_arr[DAY - 1].split(",")
+    var subjects = all_subjects_arr[DAY].split(",")
   } else if (DAY === 2) {
-    var subjects = all_subjects_arr[DAY - 1].split(",")
+    var subjects = all_subjects_arr[DAY].split(",")
   } else if (DAY === 3) {
-    var subjects = all_subjects_arr[DAY - 1].split(",")
+    var subjects = all_subjects_arr[DAY].split(",")
   } else if (DAY === 4) {
-    var subjects = all_subjects_arr[DAY - 1].split(",")
+    var subjects = all_subjects_arr[DAY].split(",")
   } else if (DAY === 5) {
-    var subjects = all_subjects_arr[DAY - 1].split(",")
+    var subjects = all_subjects_arr[DAY].split(",")
   } else {
     //อันนี้ต้องลบทิ้ง แต่ยังก่อน
     document.getElementById("subjectName").innerText = "";
