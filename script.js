@@ -54,10 +54,7 @@ function runProgram() {
  
   let periodMessage = ""
   //แสดงข้อความในคาบต่าง ๆ ตามเงื่อนไข
-  //หากเป็นวันหยุด
-  if (DAY == 0 || DAY == 6) {
-    periodMessage = "วันนี้วันหยุด"
-  } else if (period < 1) {
+  if (period < 1) {
     periodMessage = "อรุณสวัสดิ์";
   } else {
     periodMessage = "คาบ " + period;
@@ -116,6 +113,7 @@ function runProgram() {
   //หากเป็นวันเสาร์-อาทิตย์ให้ซ่อนตัวนับถอยหลัง
   if (DAY === 6 || DAY === 0) {
     document.getElementById("coutDownClock").style.display = "none";
+    document.getElementById("periodText").innerHTML = "วันนี้วันหยุด";
   }
 
   //progress bar
