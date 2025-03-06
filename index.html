@@ -6,22 +6,36 @@
   <link rel="icon" type="image/x-icon" href="img/icon.png">
   <link rel="apple-touch-icon" href="img/icon.png">
   <link rel="stylesheet" href="./style.css">
-
+  <style>
+    #hide {
+      display: none;
+    }
+    #big {
+      text-align: center;
+      font-size: 90px;
+    }
+  </style>
 </head>
 <body>
   <div id="main">
     <p id="date">
-    <div id ="clock" class="clock" onload="currentTime()"></div>
-    <div id ="periodText" class="periodText"></div>
-    <div id="subjectName" class="subjectName"></div>
-    <div id ="coutDownClock" class="coutDownClock"></div>
-    <div id="nextSubjectName" class="nextSubjectName"></div>
-    <div id="myProgress">
-      <div id="myBar"></div>
+      <div id ="clock" class="clock" onload="currentTime()"></div>
+      <div id="big">
+        ปิดเทอม
+      </div>
+    <div id="hide">
+
+      <div id ="periodText" class="periodText"></div>
+      <div id="subjectName" class="subjectName"></div>
+      <div id ="coutDownClock" class="coutDownClock"></div>
+      <div id="nextSubjectName" class="nextSubjectName"></div>
+      <div id="myProgress">
+        <div id="myBar"></div>
+      </div>
     </div>
     <br>
     <center>
-      <div id="output_table"></div>
+      <!-- <div id="output_table"></div> -->
     </center>  
   </div>
 

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title id="">นาฬิกาตารางสอน</title>
+  <link rel="icon" type="image/x-icon" href="img/icon.png">
+  <link rel="apple-touch-icon" href="img/icon.png">
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+  <div id="main">
+    <p id="date">
+    <div id ="clock" class="clock" onload="currentTime()"></div>
+    <div id ="periodText" class="periodText"></div>
+    <div id="subjectName" class="subjectName"></div>
+    <div id ="coutDownClock" class="coutDownClock"></div>
+    <div id="nextSubjectName" class="nextSubjectName"></div>
+    <div id="myProgress">
+      <div id="myBar"></div>
+    </div>
+    <br>
+    <center>
+      <div id="output_table"></div>
+    </center>  
+  </div>
+
+<script  src="./mySubjects.js"></script>
+  <script  src="./script.js"></script>
+</body>
+</html>
