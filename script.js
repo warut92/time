@@ -21,7 +21,7 @@ function runProgram() {
 
   //แปลงชั่วโมงเป็นนาที
   let HOURS_MINUTES = (HOURS * 60) + MINUTES;
-  console.log(HOURS_MINUTES);
+  // console.log(HOURS_MINUTES);
 
   //เติมเลข 0 ให้กับชั่วโมงที่มีค่าน้อยว่า 9
   HOURS = (HOURS < 10) ? "0" + HOURS : HOURS;
@@ -34,7 +34,7 @@ function runProgram() {
 
   //ตั้งตัวแปร วัน
   let DAY = date.getDay();
-  console.log("วัน",DAY);
+  // console.log("วัน",DAY);
   //สำหรับตั้งวันเฉพาะ
   // DAY = 5
   //ตั้งตัวแปร TIME_PERIOD สำหรับคาบละ 55 นาที
@@ -60,7 +60,7 @@ function runProgram() {
     periodMessage = "คาบ " + period;
   }
   document.getElementById("periodText").innerText = periodMessage;
-  console.log(periodMessage);
+  // console.log(periodMessage);
 
   // เมื่อเวลา 15.30 ให้ซ่อนตัวนับถอยหลังและชื่อวิชา
   if (HOURS_MINUTES >= 920) {   // 920 
@@ -84,13 +84,13 @@ function runProgram() {
     // นับถอยหลัง 25 นาที จาก เวลาที่จบคาบ 8 ลบด้วยเวลาปัจจุบัน 
     // นับถอยหลังถึง 15.20
     coutDownClock = (15 * 60 + 20) - HOURS_MINUTES;
-    console.log("คาบ 8");
+    // console.log("คาบ 8");
   }  else if (period < 8) {
   // ตัวนับถอยหลัง
   // แล้วตั้งลบด้วย TIME_PERIOD เพื่อต้องการหาเศษ
     coutDownClock = TIME_PERIOD - ((HOURS_MINUTES - STARTING_TIME) % TIME_PERIOD);
   }
-  console.log("TIME_PERIOD", TIME_PERIOD);
+  // console.log("TIME_PERIOD", TIME_PERIOD);
   //ตั้งตัวแปรนับเวลาถอยหลัง คิดจากเวลาที่เหลือในคาบนั้น ๆ
   //ตั้งตัวแปรเวลาถอยหลังกับข้อความ
   let coutDownClockText 
@@ -158,6 +158,10 @@ function runProgram() {
     document.getElementById("nextSubjectName").innerText = "";
   }
 
+  //hilight cell
+  let id_table = DAY + "" + period
+    highlightCell(id_table)
+
   //เรียกฟังก์ชัน runProgram() ทุก 1 วินาที (มีผลต่อการแสดง เวลาปัจจุบัน)
   setTimeout(() => {
     runProgram()
@@ -175,11 +179,11 @@ let newLineArrLen = newLineArr.length;
 //สร้างตัวแปร
 let HTMLTableOutput = "";
 //Array dayname in a week
-const d_name = ["⏲️ ", "จ. ", "อ. ", "พ. ", "พฤ.", "ศ. ", ""]
+const day_name = ["⏲️ ", "จ. ", "อ. ", "พ. ", "พฤ.", "ศ. ", ""]
 
 // looping for create new line on display
 for (let i = 0; i < newLineArrLen; i++) {
-  HTMLTableOutput += "<tr><td>" + d_name[i] + "</td>\n<td>" + newLineArr[i] + "</td></tr>" + "\n";
+  HTMLTableOutput += "<tr><td>" + day_name[i] + "</td>\n<td>" + newLineArr[i] + "</td></tr>" + "\n";
 }
 //replace comma with table tag form
 HTMLTableOutput = HTMLTableOutput.replace(/,/g, "</td>\n<td>");
@@ -191,20 +195,48 @@ if (HTMLTableOutput !== "<tr><td></td></tr>\n") {
   alert("empty data!");
 }
 // random background color
-// function changeBackground() {
-//   const hexClr = () =>
-//     "#" +
-//     Math.floor(Math.random() * 0xfffff)
-//       .toString(16)
-//       .padEnd(6, "8");
+function changeBackground() {
+  const hexClr = () =>
+    "#" +
+    Math.floor(Math.random() * 0xfffff)
+      .toString(16)
+      .padEnd(6, "8");
 
 
-//   let backgroundColor = hexClr();
-//   document.body.style.background = backgroundColor;
-//   console.log(backgroundColor);
-// }
-// changeBackground()
+  let backgroundColor = hexClr();
+  document.body.style.background = backgroundColor;
+  // console.log(backgroundColor);
+}
+changeBackground()
 
 // setInterval(changeBackground, 60000);
 // document.body.style.background = "#1c1b22"
 // document.body.style.color = "#1d2a35"
+
+  //add id for table
+  const table = document.getElementById("output_table");
+  const rows = table.getElementsByTagName("tbody")[0].rows;
+
+    for (let r = 1; r < rows.length; r++) { // start from 1 to skip first tbody row
+  const cells = rows[r].cells;
+    for (let c = 0; c < cells.length; c++) {
+        cells[c].id = `${r}${c}`; // +1 since row index starts at 0
+      }
+    }
+
+    function highlightCell(id) {
+      const cell = document.getElementById(id);
+      if (!cell) {
+        console.warn(`Cell with id ${id} not found.`);
+        return;
+      }
+      let toggle = true;
+      setInterval(() => {
+        cell.style.backgroundColor = toggle ? "red" : "";
+        toggle = !toggle;
+      }, 500);
+      cell.style.backgroundColor = ""
+
+    }
+
+
