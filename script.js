@@ -227,7 +227,7 @@ changeBackground()
     function highlightCell(id) {
       const cell = document.getElementById(id);
       if (!cell) {
-        console.warn(`Cell with id ${id} not found.`);
+        // console.warn(`Cell with id ${id} not found.`);
         return;
       }
       let toggle = true;
