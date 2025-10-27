@@ -43,10 +43,10 @@ function runProgram() {
 
   // หาลำดับของคาบ 
   // เริ่มนับตั้งแต่เที่ยงคืนถึงคาบที่ 0
-  // โดยให้คาบแรก (คาบ 0) เริ่มที่ 7:40 (ซึ่งไม่ตรงกับในความเป็นจริง 
+  // โดยให้คาบแรก (คาบ 0) เริ่มที่ 7:50 (ซึ่งไม่ตรงกับในความเป็นจริง 
   // แต่ใช้ไปก่อน เพราะยังไม่ต้องการแสดงข้อความเฉพาะในช่วงเวลาคาบที่ 0)
   let STARTING_HOUR = 7;
-  let STARTING_MINUTE = 40;
+  let STARTING_MINUTE = 50;
   let STARTING_TIME = (STARTING_HOUR * 60) + STARTING_MINUTE;
   //คำนวณหาคาบ
   let period = 0
@@ -230,6 +230,7 @@ changeBackground()
         // console.warn(`Cell with id ${id} not found.`);
         return;
       }
+      console.log('cell', cell);
       let toggle = true;
       setInterval(() => {
         cell.style.backgroundColor = toggle ? "red" : "";
@@ -238,5 +239,3 @@ changeBackground()
       cell.style.backgroundColor = ""
 
     }
-
-

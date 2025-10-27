@@ -56,6 +56,7 @@ p {
   width: 1%;
   height: 15px;
   background-color: white;
+  transition: width 0.5s ease;
 }
 
 #output_table {
