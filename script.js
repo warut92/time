@@ -226,16 +226,17 @@ changeBackground()
 
     function highlightCell(id) {
       const cell = document.getElementById(id);
+      const beforeCell = document.getElementById(id-1);
       if (!cell) {
         // console.warn(`Cell with id ${id} not found.`);
         return;
       }
-      console.log('cell', cell);
+      
       let toggle = true;
       setInterval(() => {
         cell.style.backgroundColor = toggle ? "red" : "";
         toggle = !toggle;
       }, 500);
       cell.style.backgroundColor = ""
-
+      beforeCell.style.backgroundColor = ""
     }
