@@ -234,9 +234,9 @@ changeBackground()
       
       let toggle = true;
       setInterval(() => {
+        beforeCell.style.backgroundColor = ""
         cell.style.backgroundColor = toggle ? "red" : "";
         toggle = !toggle;
       }, 500);
       cell.style.backgroundColor = ""
-      beforeCell.style.backgroundColor = ""
     }
