@@ -62,3 +62,8 @@ p {
 #output_table {
   font-size: 14px;
 }
+
+td:hover {
+  background-color: yellow;
+  color: black;
+}
