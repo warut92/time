@@ -228,15 +228,14 @@ changeBackground()
       const cell = document.getElementById(id);
       const beforeCell = document.getElementById(id-1);
       if (!cell) {
-        // console.warn(`Cell with id ${id} not found.`);
         return;
       }
       
       let toggle = true;
       setInterval(() => {
-        beforeCell.style.backgroundColor = ""
         cell.style.backgroundColor = toggle ? "red" : "";
         toggle = !toggle;
+        beforeCell.style.backgroundColor = ""
       }, 500);
-      cell.style.backgroundColor = ""
+      // cell.style.backgroundColor = ""
     }
