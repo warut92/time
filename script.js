@@ -238,3 +238,10 @@ changeBackground()
       }, 500);
       // cell.style.backgroundColor = ""
     }
+
+// โหลดหน้าใหม่โดยการคลิกที่หน้าจอ เพื่อเปลี่ยนสีของพื้นหลัง
+    function reloadPage() {
+      location.reload();
+  }
+  
+  document.body.addEventListener("click", reloadPage);
