@@ -1,0 +1,32 @@
+/* ชั้นภาพพื้นหลัง SVG อยู่หลังเนื้อหาทั้งหมด */
+#sceneLayer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.scene-frame {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+/* ความทึบของภาพ ปรับลดลงได้ถ้าตัวอักษรอ่านยาก */
+.scene-frame.is-visible {
+  opacity: 0.55;
+}
+
+.scene-frame svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ให้เนื้อหานาฬิกาอยู่เหนือภาพ */
+#main {
+  position: relative;
+  z-index: 1;
+}
